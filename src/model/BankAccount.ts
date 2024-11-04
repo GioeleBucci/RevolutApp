@@ -2,11 +2,11 @@
 import BankAccountView from './api/BankAccountView';
 
 class BankAccount implements BankAccountView {
-  public readonly uuid: string;
+  private readonly _uuid: string;
   private _balance: number;
 
   constructor(balance: number = 0) {
-    this.uuid = "TODO"; // TODO uuidv4(); does not work
+    this._uuid = "account-uuid (TODO)"; // TODO uuidv4(); does not work
     this._balance = balance;
   }
 
@@ -28,6 +28,10 @@ class BankAccount implements BankAccountView {
 
   get balance(): number {
     return this._balance;
+  }
+
+  get uuid(): string {
+    return this._uuid;
   }
 }
 
