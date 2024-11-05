@@ -1,5 +1,5 @@
 import {useNavigation, useTheme} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -9,24 +9,27 @@ import {
   View,
 } from 'react-native';
 import Text from '../components/common/Text';
-import BurgerMenu from '../assets/svg/BurgerMenu';
 import AddCircle from '../assets/svg/AddCircle';
-import {Me, Payment} from '../assets';
-import DarkMode from '../assets/svg/DarkMode';
-import LightMode from '../assets/svg/LightMode';
-import {useDispatch, useSelector} from 'react-redux';
-import {toggleTheme} from '../store/appReducer';
-import RNRestart from 'react-native-restart';
+import {Payment} from '../assets';
 import SpendingsLabel from '../components/labels/SpendingsLabel';
 import Categories from '../model/Categories';
 import BalanceLabel from '../components/labels/BalanceLabel';
 import LatestTransactionsList from '../components/lists/LatestTransactionsList';
 import MonthlySpendingsList from '../components/lists/MonthlySpendingsList';
+import Endpoints from '../commons/rest/endpoints';
+import {fetchData} from '../commons/rest/datafetcher';
 
 const Dashboard = () => {
   const styles = useStyles();
   const {colors} = useTheme();
   const navigation = useNavigation();
+  const [accounts, setAccounts] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    fetchData(Endpoints.ACCOUNTS, setAccounts);
+    fetchData(Endpoints.TRANSACTIONS, setTransactions);
+  }, []);
 
   const spendings = [
     [Categories.Groceries, 200],
@@ -70,57 +73,26 @@ const Dashboard = () => {
       <ScrollView style={{paddingHorizontal: 20}}>
         <View style={{zIndex: 10}}>
           {welcomeMessage}
-          <BalanceLabel balance="1563" accountNumber="1" />
-          {/* <BalanceLabel balance="2000" accountNumber="2" /> */}
-          <BalanceLabel balance="251" accountNumber="2" />
+          {accounts.map((account, index) => (
+            <BalanceLabel
+              key={index}
+              balance={account.balance}
+              accountNumber={index + 1}
+            />
+          ))}
         </View>
 
         <LatestTransactionsList>
-          <SpendingsLabel
-            category={Categories.Groceries}
-            store="REMA"
-            price="150"
-          />
-          <SpendingsLabel
-            category={Categories.Entertainment}
-            store="Cinema"
-            price="50"
-          />
-          <SpendingsLabel
-            category={Categories.Health}
-            store="Pharmacy"
-            price="30"
-          />
-          <SpendingsLabel
-            category={Categories.Other}
-            store="Bookstore"
-            price="20"
-          />
-          <SpendingsLabel
-            category={Categories.Restaurants}
-            store="McDonald's"
-            price="25"
-          />
-          <SpendingsLabel
-            category={Categories.Services}
-            store="Laundry"
-            price="15"
-          />
-          <SpendingsLabel
-            category={Categories.Shopping}
-            store="Zara"
-            price="100"
-          />
-          <SpendingsLabel
-            category={Categories.Transportation}
-            store="Uber"
-            price="40"
-          />
-          <SpendingsLabel
-            category={Categories.Utilities}
-            store="ENEL"
-            price="60"
-          />
+          {transactions
+            .sort((a, b) => new Date(b.date) - new Date(a.date)) // TODO sort doesnt work
+            .map((transaction, index) => (
+              <SpendingsLabel
+                key={index}
+                category={transaction.category}
+                store={transaction.store}
+                price={transaction.amount}
+              />
+            ))}
         </LatestTransactionsList>
 
         <MonthlySpendingsList spendings={spendings} />
