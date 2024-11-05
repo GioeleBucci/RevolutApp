@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Transaction from '../model/Transaction';
@@ -9,29 +9,42 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Screen from '../components/common/Screen';
 import Filter from '../components/inputs/Filter';
 import {postData} from '../commons/rest/dataposter';
+import Endpoints from '../commons/rest/endpoints';
+import {fetchData} from '../commons/rest/datafetcher';
 
 const Transactions = () => {
   const styles = useStyles();
-  const a = new BankAccount(1293);
-  const t = new Transaction(a, 12, 'REMA', '12/04/24', Categories.Groceries);
 
-  // postData('accounts', a.toJSON());
-  // postData('transactions', t.toJSON());
+  const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+
+  const handleFilterChange = text => {
+    const filtered = transactions.filter(
+      transaction =>
+        transaction.store.toLowerCase().includes(text.toLowerCase()) ||
+        transaction.date.toLowerCase().includes(text.toLowerCase()),
+    );
+    setFilteredTransactions(filtered);
+  };
+
+  useEffect(() => {
+    fetchData(Endpoints.TRANSACTIONS, data => {
+      setTransactions(data);
+      setFilteredTransactions(data);
+    });
+  }, []);
 
   return (
     <Screen title={'Transactions'}>
       <SafeAreaView style={styles.container}>
         <ScrollView style={{paddingHorizontal: 20}}>
-          <Filter placeholder={'Search...'} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
-          <TransactionLabel t={t} />
+          <Filter
+            placeholder={'Search...'}
+            onFilterChange={handleFilterChange}
+          />
+          {filteredTransactions.map((transaction, _index) => (
+            <TransactionLabel key={transaction.id} t={transaction} />
+          ))}
         </ScrollView>
       </SafeAreaView>
     </Screen>

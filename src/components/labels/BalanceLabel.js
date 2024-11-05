@@ -2,8 +2,9 @@ import {Image, StyleSheet, View} from 'react-native';
 import Text from '../common/Text';
 import {useTheme} from '@react-navigation/native';
 import {Balance} from '../../assets';
+import shortenUUID from '../../commons/shortenUUID';
 
-const BalanceLabel = ({balance, accountNumber}) => {
+const BalanceLabel = ({balance, accountNumber, accountId}) => {
   const styles = useStyles();
 
   return (
@@ -22,6 +23,9 @@ const BalanceLabel = ({balance, accountNumber}) => {
         <Text small style={styles.balanceText}>
           Account {accountNumber}
         </Text>
+        <Text small style={styles.balanceText}>
+          ({shortenUUID(accountId)})
+        </Text>
         <Text title style={styles.balanceValue}>
           {balance}€
         </Text>
@@ -34,7 +38,7 @@ const useStyles = () => {
   const {colors} = useTheme();
   return StyleSheet.create({
     balanceSection: {
-      paddingHorizontal: 60,
+      paddingHorizontal: 40,
       alignItems: 'center',
     },
     balanceView: {

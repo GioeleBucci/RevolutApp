@@ -4,6 +4,7 @@ import {Image, StyleSheet, View} from 'react-native';
 import Text from '../common/Text';
 import CategoryIcons from '../../assets/enums/CategoryIcons';
 import Transaction from '../../model/Transaction';
+import shortenUUID from '../../commons/shortenUUID';
 
 const TransactionLabel = ({t}) => {
   const styles = useStyles();
@@ -23,9 +24,10 @@ const TransactionLabel = ({t}) => {
           />
         </View>
         <View style={styles.infoRowContainer}>
-          <Text content>{t.store}</Text>
-          <Text content>{t.date}</Text>
-          <Text content>{t.amount}€</Text>
+          <Text content>Store: {t.store}</Text>
+          <Text content>Date: {t.date}</Text>
+          <Text content>Amount: {t.amount}€</Text>
+          <Text content>Account: {shortenUUID(t.account)}</Text>
         </View>
       </View>
     </View>
@@ -45,10 +47,10 @@ const useStyles = () => {
     container: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: 10,
+      marginTop: -20,
     },
     infoRowContainer: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'space-between',
       flex: 1,
       marginLeft: 15,

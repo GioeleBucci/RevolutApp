@@ -89,6 +89,7 @@ const Dashboard = () => {
             <BalanceLabel
               key={index}
               balance={account.balance}
+              accountId={account.id}
               accountNumber={index + 1}
             />
           ))}

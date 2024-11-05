@@ -10,7 +10,7 @@ import FilterIcon from '../../assets/svg/FilterIcon';
  * A generic input field component.
  * @apram {string} placeholder - The placeholder for the input field.
  * */
-const Filter = ({placeholder}) => {
+const Filter = ({placeholder, onFilterChange}) => {
   const {colors} = useTheme();
   const styles = useStyles();
 
@@ -20,6 +20,7 @@ const Filter = ({placeholder}) => {
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={colors.secondaryText}
+        onChangeText={onFilterChange}
       />
       <TouchableOpacity>
         <FilterIcon />
