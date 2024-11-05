@@ -17,6 +17,14 @@
       "category": "Shopping"
     },
     {
+      "id": "a1b2",
+      "account": "fbd22697-c19f-4da2-a211-ff8fdf3e9fe6",
+      "amount": 45,
+      "store": "EBay",
+      "date": "15/05/24",
+      "category": "Shopping"
+    },
+    {
       "id": "d3e4",
       "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
       "amount": 38,

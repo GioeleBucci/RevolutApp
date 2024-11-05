@@ -31,13 +31,25 @@ const Dashboard = () => {
     fetchData(Endpoints.TRANSACTIONS, setTransactions);
   }, []);
 
-  const spendings = [
-    [Categories.Groceries, 200],
-    [Categories.Entertainment, 1200],
-    [Categories.Restaurants, 150],
-    [Categories.Shopping, 100],
-    [Categories.Other, 75],
-  ];
+  const calculateSpendings = transactions => {
+    const spendingsMap = transactions.reduce((acc, transaction) => {
+      const category = transaction.category;
+      const amount = transaction.amount;
+      if (acc[category]) {
+        acc[category] += amount;
+      } else {
+        acc[category] = amount;
+      }
+      return acc;
+    }, {});
+
+    return Object.entries(spendingsMap).map(([category, amount]) => [
+      category,
+      amount,
+    ]);
+  };
+
+  const spendings = calculateSpendings(transactions);
 
   const SchedulePayment = () => {
     return (
@@ -84,7 +96,7 @@ const Dashboard = () => {
 
         <LatestTransactionsList>
           {transactions
-            .sort((a, b) => new Date(b.date) - new Date(a.date)) // TODO sort doesnt work
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((transaction, index) => (
               <SpendingsLabel
                 key={index}
