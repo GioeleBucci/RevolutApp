@@ -1,7 +1,7 @@
 import BankAccountView from "./api/BankAccountView";
 import Categories from "./Categories";
 
-class Transaction {
+class Transaction implements JSONSerializable {
   private readonly _account: BankAccountView;
   private readonly _amount: number;
   private readonly _store: string;
@@ -34,6 +34,16 @@ class Transaction {
 
   get category(): Categories {
     return this._category;
+  }
+
+  toJSON(): object {
+    return {
+      account: this._account.uuid,
+      amount: this._amount,
+      store: this._store,
+      date: this._date,
+      category: this._category
+    };
   }
 }
 

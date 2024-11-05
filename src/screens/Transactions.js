@@ -13,9 +13,10 @@ import {postData} from '../commons/rest/dataposter';
 const Transactions = () => {
   const styles = useStyles();
   const a = new BankAccount(1293);
-  const t = new Transaction(a, 12, 'REMA', '2021/09/01', Categories.Groceries);
+  const t = new Transaction(a, 12, 'REMA', '12/04/24', Categories.Groceries);
 
-  postData('accounts', a.toJSON());
+  // postData('accounts', a.toJSON());
+  postData('transactions', t.toJSON());
 
   return (
     <Screen title={'Transactions'}>

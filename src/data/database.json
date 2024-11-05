@@ -1,36 +1,86 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com"
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com"
-    }
-  ],
   "transactions": [
     {
-      "id": 101,
-      "userId": 1,
-      "amount": 250.75,
-      "currency": "USD",
-      "date": "2023-10-01"
+      "id": "d869",
+      "account": {
+        "uuid": "9ee3cc7b-b20a-4c13-9f86-8a257da03543",
+        "balance": 1293
+      },
+      "amount": 12,
+      "store": "REMA",
+      "date": "2024-11-05T16:16:56.841Z",
+      "category": "Groceries"
     },
     {
-      "id": 102,
-      "userId": 2,
-      "amount": 100,
-      "currency": "EUR",
-      "date": "2023-10-02"
+      "id": "49f8",
+      "account": {
+        "uuid": "e75c9976-b297-4198-a627-3929c2dcddae",
+        "balance": 1293
+      },
+      "amount": 12,
+      "store": "REMA",
+      "date": "2024-11-05T16:16:56.973Z",
+      "category": "Groceries"
+    },
+    {
+      "id": "db65",
+      "account": {
+        "uuid": "b7b8c6c9-8bbd-4e57-b5b3-c219cfebe199",
+        "balance": 1293
+      },
+      "amount": 12,
+      "store": "REMA",
+      "date": "12/04/24",
+      "category": "Groceries"
+    },
+    {
+      "id": "ab39",
+      "account": "b432f92a-c437-46e0-bee6-77a4920d4f89",
+      "amount": 12,
+      "store": "REMA",
+      "date": "12/04/24",
+      "category": "Groceries"
     }
   ],
   "accounts": [
     {
       "id": "1537",
       "uuid": "806add51-09bd-450a-a21e-f28542677fea",
+      "balance": 1293
+    },
+    {
+      "id": "b6fc",
+      "uuid": "0814765c-1c6b-40c1-824a-848113b8d7c9",
+      "balance": 1293
+    },
+    {
+      "id": "9e44",
+      "uuid": "a52e5002-6d1e-49d7-9925-689080ce40f6",
+      "balance": 1293
+    },
+    {
+      "id": "9644",
+      "uuid": "01c6cdb8-425c-4f06-92b7-5944f26fc9ca",
+      "balance": 1293
+    },
+    {
+      "id": "da3a",
+      "uuid": "7c8541c7-7288-456f-8e60-4dca1fa7a968",
+      "balance": 1293
+    },
+    {
+      "id": "6921",
+      "uuid": "1c1b2807-d65c-4f7e-b888-a97a83002d94",
+      "balance": 1293
+    },
+    {
+      "id": "2f91",
+      "uuid": "e39b936f-923c-4968-8977-15760bb9249c",
+      "balance": 1293
+    },
+    {
+      "id": "00b5",
+      "uuid": "29461adb-2060-468a-9c96-ee7467f80367",
       "balance": 1293
     }
   ]

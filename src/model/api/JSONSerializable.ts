@@ -1,0 +1,3 @@
+interface JSONSerializable {
+  toJSON(): object;
+}

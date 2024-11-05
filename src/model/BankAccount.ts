@@ -1,7 +1,7 @@
 import uuid from 'react-native-uuid';
 import BankAccountView from './api/BankAccountView';
 
-class BankAccount implements BankAccountView {
+class BankAccount implements BankAccountView, JSONSerializable {
   private readonly _uuid: string;
   private _balance: number;
 
@@ -35,7 +35,6 @@ class BankAccount implements BankAccountView {
   }
 
   toJSON() {
-    // Only include properties you want in the JSON
     return {
       uuid: this.uuid,
       balance: this.balance
