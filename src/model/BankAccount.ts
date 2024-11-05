@@ -1,4 +1,4 @@
-// import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid';
 import BankAccountView from './api/BankAccountView';
 
 class BankAccount implements BankAccountView {
@@ -6,7 +6,7 @@ class BankAccount implements BankAccountView {
   private _balance: number;
 
   constructor(balance: number = 0) {
-    this._uuid = "account-uuid (TODO)"; // TODO uuidv4(); does not work
+    this._uuid = uuid.v4() as string;
     this._balance = balance;
   }
 

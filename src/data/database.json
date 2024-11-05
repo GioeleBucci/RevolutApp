@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 101,
+      "userId": 1,
+      "amount": 250.75,
+      "currency": "USD",
+      "date": "2023-10-01"
+    },
+    {
+      "id": 102,
+      "userId": 2,
+      "amount": 100.0,
+      "currency": "EUR",
+      "date": "2023-10-02"
+    }
+  ]
+}
