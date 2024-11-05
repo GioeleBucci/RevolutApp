@@ -8,16 +8,15 @@ import TransactionLabel from '../components/labels/TramsactionLabel';
 import {ScrollView} from 'react-native-gesture-handler';
 import Screen from '../components/common/Screen';
 import Filter from '../components/inputs/Filter';
+import {postData} from '../commons/rest/dataposter';
 
 const Transactions = () => {
   const styles = useStyles();
-  const t = new Transaction(
-    new BankAccount(14),
-    12,
-    'REMA',
-    '2021/09/01',
-    Categories.Groceries,
-  );
+  const a = new BankAccount(1293);
+  const t = new Transaction(a, 12, 'REMA', '2021/09/01', Categories.Groceries);
+
+  postData('accounts', a.toJSON());
+
   return (
     <Screen title={'Transactions'}>
       <SafeAreaView style={styles.container}>

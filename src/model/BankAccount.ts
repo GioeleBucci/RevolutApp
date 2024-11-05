@@ -33,6 +33,14 @@ class BankAccount implements BankAccountView {
   get uuid(): string {
     return this._uuid;
   }
+
+  toJSON() {
+    // Only include properties you want in the JSON
+    return {
+      uuid: this.uuid,
+      balance: this.balance
+    };
+  }
 }
 
 export default BankAccount;

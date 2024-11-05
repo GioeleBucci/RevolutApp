@@ -22,9 +22,16 @@
     {
       "id": 102,
       "userId": 2,
-      "amount": 100.0,
+      "amount": 100,
       "currency": "EUR",
       "date": "2023-10-02"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1537",
+      "uuid": "806add51-09bd-450a-a21e-f28542677fea",
+      "balance": 1293
     }
   ]
 }

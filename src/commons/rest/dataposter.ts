@@ -1,11 +1,11 @@
-import { Menu } from "../menus";
+// import { Menu } from "../menus";
 import RestApiEndpoints from "./endpoints";
 
-export async function postData(page: Menu, data: any): Promise<any> {
+export async function postData(page: string, data: any): Promise<any> {
   try {
     console.log('Data to be posted:', data);
 
-    const response = await fetch(`${RestApiEndpoints.URL}/${page.path}`, {
+    const response = await fetch(`${RestApiEndpoints.URL}/${page}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
