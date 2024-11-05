@@ -36,7 +36,7 @@ class BankAccount implements BankAccountView, JSONSerializable {
 
   toJSON() {
     return {
-      uuid: this.uuid,
+      id: this.uuid,
       balance: this.balance
     };
   }

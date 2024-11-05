@@ -1,11 +1,10 @@
-import { Menu } from "../menus";
-import RestApiEndpoints from "./endpoints";
+import Endpoints, { URL } from "./endpoints";
 
-export async function putData(page: Menu, key: string, newData: any): Promise<any> {
+export async function putData(endpoint: Endpoints, key: string, newData: any): Promise<any> {
   try {
     console.log('Data to be updated:', newData);
 
-    const response = await fetch(`${RestApiEndpoints.URL}/${page.path}/${key}`, {
+    const response = await fetch(`${URL}/${endpoint}/${key}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

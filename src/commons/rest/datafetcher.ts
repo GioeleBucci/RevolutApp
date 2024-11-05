@@ -1,9 +1,8 @@
-import { Menu } from '../menus';
-import RestApiEndpoints from './endpoints';
+import Endpoints, { URL } from "./endpoints";
 
-export async function fetchData(menu: Menu, setItems: (items: any) => void): Promise<void> {
+export async function fetchData(endpoint: Endpoints, setItems: (items: any) => void): Promise<void> {
   try {
-    const response = await fetch(`${RestApiEndpoints.URL}/${menu.path}`);
+    const response = await fetch(`${URL}/${endpoint}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

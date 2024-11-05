@@ -16,7 +16,7 @@ const Transactions = () => {
   const t = new Transaction(a, 12, 'REMA', '12/04/24', Categories.Groceries);
 
   // postData('accounts', a.toJSON());
-  postData('transactions', t.toJSON());
+  // postData('transactions', t.toJSON());
 
   return (
     <Screen title={'Transactions'}>
