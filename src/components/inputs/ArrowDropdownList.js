@@ -4,21 +4,28 @@ import {StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Text from '../common/Text';
 
-const ArrowDropdownList = ({label, entries}) => {
-  const [value, setValue] = useState(null);
+const ArrowDropdownList = ({label, entries, onValueChange}) => {
+  const formattedEntries = entries.map(entry => ({
+    label: entry,
+    value: entry,
+  }));
+
+  const [value, setValue] = useState(
+    formattedEntries.length > 0 ? formattedEntries[0].value : null,
+  );
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(formattedEntries);
 
   useEffect(() => {
-    const formattedEntries = entries.map(entry => ({
-      label: entry,
-      value: entry,
-    }));
-    setItems(formattedEntries);
-    if (formattedEntries.length > 0) {
-      setValue(formattedEntries[0].value);
+    if (value !== null) {
+      onValueChange(value);
     }
-  }, [entries]);
+  }, [value]);
+
+  const handleValueChange = val => {
+    setValue(val);
+    onValueChange(val);
+  };
 
   const styles = useStyles();
 
@@ -35,7 +42,7 @@ const ArrowDropdownList = ({label, entries}) => {
         value={value}
         items={items}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={handleValueChange}
         setItems={setItems}
       />
     </>

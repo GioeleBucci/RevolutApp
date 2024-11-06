@@ -16,6 +16,7 @@ const Transfer2 = () => {
   const [message, setMessage] = useState('');
   const [date, setDate] = useState(new Date());
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [sourceAccount, setSourceAccount] = useState(''); // Add state for source account
 
   const handleTransfer = () => {
     // Handle the transfer logic here
@@ -48,7 +49,11 @@ const Transfer2 = () => {
             onChangeText={setAmount}
             inputType="numeric"
           />
-          <ArrowDropdownList label="Source Account" entries={accounts} />
+          <ArrowDropdownList
+            label="Source Account"
+            entries={accounts}
+            onValueChange={setSourceAccount} // Pass the callback function
+          />
           <GenericInputField
             label="Message"
             placeholder={'Enter destination account'}
