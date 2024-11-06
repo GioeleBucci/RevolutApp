@@ -1,10 +1,15 @@
 import {useTheme} from '@react-navigation/native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Text from '../common/Text';
 
-const ArrowDropdownList = ({label, entries, onValueChange}) => {
+/**
+ * @param {string} label - The label of the dropdown list
+ * @param {Array} entries - The entries of the dropdown list
+ * @param {function} onValueChange - The function that will be called when the value changes
+ */
+const ArrowDropdownList = ({label, entries = [], onValueChange}) => {
   const formattedEntries = entries.map(entry => ({
     label: entry,
     value: entry,
@@ -17,15 +22,22 @@ const ArrowDropdownList = ({label, entries, onValueChange}) => {
   const [items, setItems] = useState(formattedEntries);
 
   useEffect(() => {
+    setItems(formattedEntries);
+  }, [entries]);
+
+  useEffect(() => {
     if (value !== null) {
       onValueChange(value);
     }
-  }, [value]);
+  }, [value, onValueChange]);
 
-  const handleValueChange = val => {
-    setValue(val);
-    onValueChange(val);
-  };
+  const handleValueChange = useCallback(
+    val => {
+      setValue(val);
+      onValueChange(val);
+    },
+    [onValueChange],
+  );
 
   const styles = useStyles();
 

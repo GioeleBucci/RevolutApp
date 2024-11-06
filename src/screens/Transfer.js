@@ -1,6 +1,6 @@
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Screen from '../components/common/Screen';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import GenericButton from '../components/buttons/GenericButton';
 import GenericInputField from '../components/inputs/GenericInputField';
 import ArrowDropdownList from '../components/inputs/ArrowDropdownList';
@@ -8,6 +8,9 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useTheme} from '@react-navigation/native';
 import formatTime from '../commons/FormatTime';
 import TextLabel from '../components/labels/TextLabel';
+import Endpoints from '../commons/rest/endpoints';
+import {fetchData} from '../commons/rest/datafetcher';
+import shortenUUID from '../commons/shortenUUID';
 
 const Transfer2 = () => {
   const styles = useStyles();
@@ -16,10 +19,20 @@ const Transfer2 = () => {
   const [message, setMessage] = useState('');
   const [date, setDate] = useState(new Date());
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [sourceAccount, setSourceAccount] = useState(''); // Add state for source account
+  const [sourceAccount, setSourceAccount] = useState('');
+  const [accounts, setAccounts] = useState([]);
+
+  useEffect(() => {
+    fetchData(Endpoints.ACCOUNTS, data => {
+      const parsed = Object.fromEntries(
+        data.map(({id, balance}) => [id, balance]),
+      );
+      setAccounts(parsed);
+    });
+  }, []);
 
   const handleTransfer = () => {
-    // Handle the transfer logic here
+    console.log(accounts);
     console.log('Transfer submitted', {
       sourceAccount,
       destinationAccount,
@@ -37,8 +50,6 @@ const Transfer2 = () => {
     setMessage('');
   };
 
-  const accounts = ['Account 1', 'Account 2', 'Account 3'];
-
   return (
     <Screen title={'Transfer'}>
       <SafeAreaView style={styles.container}>
@@ -51,8 +62,8 @@ const Transfer2 = () => {
           />
           <ArrowDropdownList
             label="Source Account"
-            entries={accounts}
-            onValueChange={setSourceAccount} // Pass the callback function
+            entries={Object.keys(accounts)}
+            onValueChange={setSourceAccount}
           />
           <GenericInputField
             label="Message"
