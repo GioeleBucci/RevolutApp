@@ -9,14 +9,15 @@ import Text from '../common/Text';
  * @param title The title to display on the button.
  * @param titleColor The color of the title text. Defaults to secondary text color.
  * @param RightComponent An optional component to render on the right side of the button.
+ * @param onPress The callback function to handle button press.
  */
-const GenericButton = ({title, titleColor, RightComponent}) => {
+const GenericButton = ({title, titleColor, RightComponent, onPress}) => {
   const {colors} = useTheme();
   const styles = useStyles();
   const textColor = titleColor ? titleColor : colors.secondaryText;
 
   return (
-    <TouchableOpacity style={styles.cardDetail}>
+    <TouchableOpacity style={styles.cardDetail} onPress={onPress}>
       <Text style={{color: textColor}}>{title}</Text>
       {RightComponent && <RightComponent />}
     </TouchableOpacity>
