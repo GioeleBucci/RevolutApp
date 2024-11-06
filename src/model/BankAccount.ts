@@ -5,8 +5,12 @@ class BankAccount implements BankAccountView, JSONSerializable {
   private readonly _uuid: string;
   private _balance: number;
 
+  private static generateID(length = 16): string {
+    return Array.from({ length }, () => Math.random().toString(36).charAt(2)).join('').toUpperCase();
+  }
+
   constructor(balance: number = 0) {
-    this._uuid = uuid.v4() as string;
+    this._uuid = BankAccount.generateID();
     this._balance = balance;
   }
 

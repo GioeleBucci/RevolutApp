@@ -3,8 +3,6 @@ import {useTheme} from '@react-navigation/native';
 import {Image, StyleSheet, View} from 'react-native';
 import Text from '../common/Text';
 import CategoryIcons from '../../assets/enums/CategoryIcons';
-import Transaction from '../../model/Transaction';
-import shortenUUID from '../../commons/shortenUUID';
 
 const TransactionLabel = ({t}) => {
   const styles = useStyles();
@@ -23,13 +21,13 @@ const TransactionLabel = ({t}) => {
         </View>
         <View style={styles.infoRowContainer}>
           {t.category == 'Transfer' ? (
-            <Text content>To: {t.store}</Text>
+            <Text content>To: {t.destination}</Text>
           ) : (
-            <Text content>Store: {t.store}</Text>
+            <Text content>Store: {t.destination}</Text>
           )}
           <Text content>Date: {t.date}</Text>
           <Text content>Amount: {t.amount}€</Text>
-          <Text content>Account: {shortenUUID(t.account)}</Text>
+          <Text content>Account: {t.account}</Text>
           {t.message ? <Text content>Message: {t.message}</Text> : null}
         </View>
       </View>

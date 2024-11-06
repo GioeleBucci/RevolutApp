@@ -2,7 +2,6 @@ import {Image, StyleSheet, View} from 'react-native';
 import Text from '../common/Text';
 import {useTheme} from '@react-navigation/native';
 import {Balance} from '../../assets';
-import shortenUUID from '../../commons/shortenUUID';
 
 const BalanceLabel = ({balance, accountNumber, accountId}) => {
   const styles = useStyles();
@@ -24,7 +23,7 @@ const BalanceLabel = ({balance, accountNumber, accountId}) => {
           Account {accountNumber}
         </Text>
         <Text small style={styles.balanceText}>
-          ({shortenUUID(accountId)})
+          {accountId}
         </Text>
         <Text title style={styles.balanceValue}>
           {balance}€
