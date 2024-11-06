@@ -38,14 +38,14 @@ const Transfer2 = () => {
       Alert.alert('Transfer failed', 'Please fill all fields');
       return;
     }
-    if (accounts[sourceAccount] < amount) {
+    if (parseFloat(accounts[sourceAccount]) < amount) {
       Alert.alert('Transfer failed', 'Insufficient funds');
       return;
     }
     let transfer = new Transaction(
       sourceAccount,
       destinationAccount,
-      amount,
+      -amount,
       formatTime(date),
       Categories.Other,
       message,
