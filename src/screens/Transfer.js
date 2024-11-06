@@ -1,4 +1,4 @@
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {Alert, SafeAreaView, StyleSheet, View} from 'react-native';
 import Screen from '../components/common/Screen';
 import React, {useEffect, useState} from 'react';
 import GenericButton from '../components/buttons/GenericButton';
@@ -10,7 +10,9 @@ import formatTime from '../commons/FormatTime';
 import TextLabel from '../components/labels/TextLabel';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
-import shortenUUID from '../commons/shortenUUID';
+import Transaction from '../model/Transaction';
+import Categories from '../model/Categories';
+import {postData} from '../commons/rest/dataposter';
 
 const Transfer2 = () => {
   const styles = useStyles();
@@ -32,14 +34,23 @@ const Transfer2 = () => {
   }, []);
 
   const handleTransfer = () => {
-    console.log(accounts);
-    console.log('Transfer submitted', {
+    if (!sourceAccount || !destinationAccount || !amount || !date) {
+      Alert.alert('Transfer failed', 'Please fill all fields');
+      return;
+    }
+    if (accounts[sourceAccount] < amount) {
+      Alert.alert('Transfer failed', 'Insufficient funds');
+      return;
+    }
+    let transfer = new Transaction(
       sourceAccount,
       destinationAccount,
       amount,
-      message,
       date,
-    });
+      Categories.Other,
+      message,
+    );
+    postData(Endpoints.TRANSACTIONS, transfer.toJSON());
   };
 
   const handleCancel = () => {
@@ -66,7 +77,7 @@ const Transfer2 = () => {
             onValueChange={setSourceAccount}
           />
           <GenericInputField
-            label="Message"
+            label="Destination Account"
             placeholder={'Enter destination account'}
             onChangeText={setDestinationAccount}
           />

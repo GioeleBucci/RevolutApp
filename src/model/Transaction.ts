@@ -2,31 +2,34 @@ import BankAccountView from "./api/BankAccountView";
 import Categories from "./Categories";
 
 class Transaction implements JSONSerializable {
-  private readonly _account: BankAccountView;
+  private readonly _source: string;
+  private readonly _destination: string;
   private readonly _amount: number;
-  private readonly _store: string;
   private readonly _date: Date;
   private readonly _category: Categories;
+  private _messsage: string = "";
 
-  constructor(account: BankAccountView, amount: number, store: string, date: Date, category: Categories) {
-    this._account = account;
+  constructor(source: string, destination: string, amount: number, date: Date, category: Categories, message: string) {
+    this._source = source;
     this._amount = amount;
-    this._store = store;
+    this._destination = destination;
     this._date = date;
     this._category = category;
+    this._messsage = message;
   }
 
-  get account(): BankAccountView {
-    return this._account;
+  get source(): string {
+    return this._source;
+  }
+
+  get destination(): string {
+    return this._destination;
   }
 
   get amount(): number {
     return this._amount;
   }
 
-  get store(): string {
-    return this._store;
-  }
 
   get date(): Date {
     return this._date;
@@ -36,14 +39,22 @@ class Transaction implements JSONSerializable {
     return this._category;
   }
 
+  get message(): string {
+    return this._messsage;
+  }
+
   toJSON(): object {
-    return {
-      account: this._account.uuid,
+    const json: any = {
+      account: this._source,
+      store: this._destination,
       amount: this._amount,
-      store: this._store,
       date: this._date,
       category: this._category
     };
+    if (this._messsage) {
+      json.message = this._messsage;
+    }
+    return json;
   }
 }
 

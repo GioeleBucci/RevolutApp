@@ -31,6 +31,14 @@
       "store": "McDonalds",
       "date": "20/06/24",
       "category": "Restaurants"
+    },
+    {
+      "id": "c4ee",
+      "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
+      "store": "27473727",
+      "amount": "17",
+      "date": "2024-11-19T19:16:00.000Z",
+      "category": "Other"
     }
   ],
   "accounts": [
