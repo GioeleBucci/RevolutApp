@@ -10,12 +10,13 @@ import Categories from '../../model/Categories';
 /**
  * A generic input field component.
  * @param {string} placeholder - The placeholder for the input field.
- * @param {function} onFilterChange - The callback function to handle input changes.
- * @param {function} onCategoryChange - The callback function to handle category changes.
+ * @param {function} updateElements - A function to update the elements based on the
+ * filter. It should accept two parameters: the filter text and the selected categories.
  */
-const Filter = ({placeholder, onFilterChange, onCategoryChange}) => {
+const Filter = ({placeholder, updateElements}) => {
   const {colors} = useTheme();
   const styles = useStyles();
+  const [filterText, setFilterText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState(
     Object.keys(Categories).reduce((acc, category) => {
@@ -30,7 +31,18 @@ const Filter = ({placeholder, onFilterChange, onCategoryChange}) => {
       [category]: !selectedCategories[category],
     };
     setSelectedCategories(updatedCategories);
-    onCategoryChange(Object.keys(updatedCategories));
+    updateElements(
+      filterText,
+      Object.keys(updatedCategories).filter(key => updatedCategories[key]),
+    );
+  };
+
+  const onFilterChange = text => {
+    setFilterText(text);
+    updateElements(
+      text,
+      Object.keys(selectedCategories).filter(key => selectedCategories[key]),
+    );
   };
 
   return (

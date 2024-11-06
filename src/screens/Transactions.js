@@ -14,19 +14,13 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
 
-  const handleFilterChange = text => {
-    const filtered = filteredTransactions.filter(
-      transaction =>
-        transaction.store.toLowerCase().includes(text.toLowerCase()) ||
-        transaction.date.toLowerCase().includes(text.toLowerCase()),
-    );
-    setFilteredTransactions(filtered);
-  };
-
-  const handleCategoryChange = categories => {
-    console.log('recieved: ' + categories);
-    const filtered = filteredTransactions.filter(transaction =>
-      categories.includes(transaction.category),
+  const updateTransactions = (filter, categories) => {
+    console.log('Filter:', filter, 'Categories:', categories);
+    const filtered = transactions.filter(
+      t =>
+        (t.store.toLowerCase().includes(filter.toLowerCase()) ||
+          t.date.toLowerCase().includes(filter.toLowerCase())) &&
+        categories.includes(t.category),
     );
     setFilteredTransactions(filtered);
   };
@@ -44,8 +38,7 @@ const Transactions = () => {
         <ScrollView style={{paddingHorizontal: 20}}>
           <Filter
             placeholder={'Search...'}
-            onFilterChange={handleFilterChange}
-            onCategoryChange={handleCategoryChange}
+            updateElements={updateTransactions}
           />
           {filteredTransactions.map((transaction, _index) => (
             <TransactionLabel key={transaction.id} t={transaction} />
