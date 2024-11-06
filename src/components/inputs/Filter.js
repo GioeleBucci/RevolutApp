@@ -69,6 +69,7 @@ const Filter = ({placeholder, updateElements}) => {
               checked={!!selectedCategories[category]}
               onPress={() => toggleCategory(category)}
               containerStyle={styles.checkbox}
+              textStyle={{color: colors.primaryText}}
             />
           ))}
           <Button
