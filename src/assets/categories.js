@@ -7,3 +7,4 @@ export { default as Services } from './images/categories/services.png';
 export { default as Shopping } from './images/categories/shopping.png';
 export { default as Transport } from './images/categories/transport.png';
 export { default as Utilities } from './images/categories/utilities.png';
+export { default as Trasfer } from './images/categories/transfer.png';

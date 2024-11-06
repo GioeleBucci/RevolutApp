@@ -7,6 +7,7 @@ enum Categories {
   Health = "Health",
   Services = "Services",
   Utilities = "Utilities",
+  Transfer = "Transfer",
   Other = "Other"
 }
 

@@ -46,7 +46,7 @@ const Transfer2 = () => {
       sourceAccount,
       destinationAccount,
       amount,
-      date,
+      formatTime(date),
       Categories.Other,
       message,
     );

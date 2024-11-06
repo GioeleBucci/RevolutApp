@@ -7,6 +7,7 @@ import EntertainmentImg from '../images/categories/entertainment.png';
 import HealthImg from '../images/categories/health.png';
 import ServicesImg from '../images/categories/services.png';
 import UtilitiesImg from '../images/categories/utilities.png';
+import TransferImg from '../images/categories/transfer.png';
 import OtherImg from '../images/categories/other.png';
 
 const CategoryIcons: { [key in Categories]: number } = {
@@ -18,6 +19,7 @@ const CategoryIcons: { [key in Categories]: number } = {
   [Categories.Health]: HealthImg,
   [Categories.Services]: ServicesImg,
   [Categories.Utilities]: UtilitiesImg,
+  [Categories.Transfer]: TransferImg,
   [Categories.Other]: OtherImg,
 };
 

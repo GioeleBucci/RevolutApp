@@ -26,6 +26,7 @@ const TransactionLabel = ({t}) => {
           <Text content>Date: {t.date}</Text>
           <Text content>Amount: {t.amount}€</Text>
           <Text content>Account: {shortenUUID(t.account)}</Text>
+          {t.message ? <Text content>Message: {t.message}</Text> : null}
         </View>
       </View>
     </View>

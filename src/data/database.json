@@ -38,7 +38,16 @@
       "store": "27473727",
       "amount": "17",
       "date": "2024-11-19T19:16:00.000Z",
-      "category": "Other"
+      "category": "Transfer"
+    },
+    {
+      "id": "ae40",
+      "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
+      "store": "1647277",
+      "amount": "15",
+      "date": "2024/11/06",
+      "category": "Transfer",
+      "message": "test test"
     }
   ],
   "accounts": [
