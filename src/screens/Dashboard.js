@@ -34,7 +34,7 @@ const Dashboard = () => {
   const calculateSpendings = transactions => {
     const spendingsMap = transactions.reduce((acc, transaction) => {
       const category = transaction.category;
-      const amount = transaction.amount;
+      const amount = parseFloat(transaction.amount);
       if (acc[category]) {
         acc[category] += amount;
       } else {

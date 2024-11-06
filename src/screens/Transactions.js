@@ -18,7 +18,7 @@ const Transactions = () => {
     console.log('Filter:', filter, 'Categories:', categories);
     const filtered = transactions.filter(
       t =>
-        (t.store.toLowerCase().includes(filter.toLowerCase()) ||
+        (t.destination.toLowerCase().includes(filter.toLowerCase()) ||
           t.date.toLowerCase().includes(filter.toLowerCase())) &&
         categories.includes(t.category),
     );
