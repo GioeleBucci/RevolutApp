@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import Transaction from '../model/Transaction';
-import BankAccount from '../model/BankAccount';
-import Categories from '../model/Categories';
 import TransactionLabel from '../components/labels/TramsactionLabel';
 import {ScrollView} from 'react-native-gesture-handler';
 import Screen from '../components/common/Screen';
 import Filter from '../components/inputs/Filter';
-import {postData} from '../commons/rest/dataposter';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
 
@@ -19,10 +15,18 @@ const Transactions = () => {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   const handleFilterChange = text => {
-    const filtered = transactions.filter(
+    const filtered = filteredTransactions.filter(
       transaction =>
         transaction.store.toLowerCase().includes(text.toLowerCase()) ||
         transaction.date.toLowerCase().includes(text.toLowerCase()),
+    );
+    setFilteredTransactions(filtered);
+  };
+
+  const handleCategoryChange = categories => {
+    console.log('recieved: ' + categories);
+    const filtered = filteredTransactions.filter(transaction =>
+      categories.includes(transaction.category),
     );
     setFilteredTransactions(filtered);
   };
@@ -41,6 +45,7 @@ const Transactions = () => {
           <Filter
             placeholder={'Search...'}
             onFilterChange={handleFilterChange}
+            onCategoryChange={handleCategoryChange}
           />
           {filteredTransactions.map((transaction, _index) => (
             <TransactionLabel key={transaction.id} t={transaction} />

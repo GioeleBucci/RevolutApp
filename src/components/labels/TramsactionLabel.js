@@ -9,8 +9,6 @@ import shortenUUID from '../../commons/shortenUUID';
 const TransactionLabel = ({t}) => {
   const styles = useStyles();
   const categoryIcon = CategoryIcons[t.category];
-  console.log(t);
-  console.log(t.category);
 
   return (
     <View style={styles.wrapper}>

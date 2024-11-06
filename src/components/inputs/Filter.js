@@ -11,18 +11,26 @@ import Categories from '../../model/Categories';
  * A generic input field component.
  * @param {string} placeholder - The placeholder for the input field.
  * @param {function} onFilterChange - The callback function to handle input changes.
+ * @param {function} onCategoryChange - The callback function to handle category changes.
  */
-const Filter = ({placeholder = 'Enter text', onFilterChange = () => {}}) => {
+const Filter = ({placeholder, onFilterChange, onCategoryChange}) => {
   const {colors} = useTheme();
   const styles = useStyles();
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState({});
+  const [selectedCategories, setSelectedCategories] = useState(
+    Object.keys(Categories).reduce((acc, category) => {
+      acc[category] = true;
+      return acc;
+    }, {}),
+  );
 
   const toggleCategory = category => {
-    setSelectedCategories(prevState => ({
-      ...prevState,
-      [category]: !prevState[category],
-    }));
+    const updatedCategories = {
+      ...selectedCategories,
+      [category]: !selectedCategories[category],
+    };
+    setSelectedCategories(updatedCategories);
+    onCategoryChange(Object.keys(updatedCategories));
   };
 
   return (
@@ -31,7 +39,7 @@ const Filter = ({placeholder = 'Enter text', onFilterChange = () => {}}) => {
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={colors.secondaryText}
-        onChangeText={onFilterChange} // Call the callback function on text change
+        onChangeText={onFilterChange}
       />
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <FilterIcon />
@@ -55,7 +63,6 @@ const Filter = ({placeholder = 'Enter text', onFilterChange = () => {}}) => {
             title="Close"
             onPress={() => {
               setModalVisible(false);
-              console.log('Selected Categories:', selectedCategories);
             }}
           />
         </View>
