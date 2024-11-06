@@ -83,7 +83,7 @@ const Transfer2 = () => {
           />
           <GenericInputField
             label="Message"
-            placeholder={'Enter message'}
+            placeholder={'Enter message (optional)'}
             onChangeText={setMessage}
           />
           <DateTimePickerModal

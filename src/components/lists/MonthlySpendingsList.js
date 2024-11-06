@@ -10,7 +10,7 @@ import MonthlySpendingsLabel from '../labels/MonthlySpendingLabel';
  * @param spendings - An array of (k, v) pairs where keys are spending categories and values are amounts.
  */
 const MonthlySpendingsList = ({spendings}) => {
-  const sortedSpendings = spendings.sort(([, a], [, b]) => b - a);
+  const sortedSpendings = spendings.sort(([, a], [, b]) => a - b);
 
   const styles = useStyles();
 

@@ -23,7 +23,7 @@ const SpendingsLabel = ({category, store, price}) => {
       </View>
       <View style={styles.balanceTextRow}>
         <Text content>{store}</Text>
-        <Text content>-{price}€</Text>
+        <Text content>{price}€</Text>
       </View>
     </View>
   );
