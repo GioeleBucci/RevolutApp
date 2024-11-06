@@ -1,17 +1,11 @@
 import React, {useState} from 'react';
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  View,
-  Modal,
-  Button,
-} from 'react-native';
+import {TouchableOpacity, StyleSheet, View, Modal, Button} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Text from '../common/Text';
 import {TextInput} from 'react-native-gesture-handler';
 import FilterIcon from '../../assets/svg/FilterIcon';
 import {CheckBox} from 'react-native-elements';
+import Categories from '../../model/Categories';
 
 /**
  * A generic input field component.
@@ -22,8 +16,14 @@ const Filter = ({placeholder = 'Enter text', onFilterChange = () => {}}) => {
   const {colors} = useTheme();
   const styles = useStyles();
   const [modalVisible, setModalVisible] = useState(false);
-  const [option1, setOption1] = useState(false);
-  const [option2, setOption2] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState({});
+
+  const toggleCategory = category => {
+    setSelectedCategories(prevState => ({
+      ...prevState,
+      [category]: !prevState[category],
+    }));
+  };
 
   return (
     <View style={styles.cardDetail}>
@@ -42,19 +42,22 @@ const Filter = ({placeholder = 'Enter text', onFilterChange = () => {}}) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalView}>
-          <CheckBox
-            title="Option 1"
-            checked={option1}
-            onPress={() => setOption1(!option1)}
-            containerStyle={styles.checkbox}
+          {Object.values(Categories).map(category => (
+            <CheckBox
+              key={category}
+              title={category}
+              checked={!!selectedCategories[category]}
+              onPress={() => toggleCategory(category)}
+              containerStyle={styles.checkbox}
+            />
+          ))}
+          <Button
+            title="Close"
+            onPress={() => {
+              setModalVisible(false);
+              console.log('Selected Categories:', selectedCategories);
+            }}
           />
-          <CheckBox
-            title="Option 2"
-            checked={option2}
-            onPress={() => setOption2(!option2)}
-            containerStyle={styles.checkbox}
-          />
-          <Button title="Close" onPress={() => setModalVisible(false)} />
         </View>
       </Modal>
     </View>
