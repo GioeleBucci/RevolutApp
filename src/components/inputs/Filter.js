@@ -102,8 +102,8 @@ const useStyles = () => {
       paddingHorizontal: 15,
     },
     icon: {
-      height: 40, // Match the height of the TextInput
-      width: 40, // Adjust the width as needed
+      height: 40,
+      width: 40,
     },
     modalView: {
       margin: 20,

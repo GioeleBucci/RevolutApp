@@ -1,9 +1,8 @@
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Screen from '../components/common/Screen';
 import React, {useState} from 'react';
-import {Button} from 'react-native';
 import GenericButton from '../components/buttons/GenericButton';
-import GenericInputField from '../components/inputs/NumericInput';
+import GenericInputField from '../components/inputs/GenericInputField';
 import ArrowDropdownList from '../components/inputs/ArrowDropdownList';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useTheme} from '@react-navigation/native';

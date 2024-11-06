@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Text from '../common/Text';
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet, TextInput} from 'react-native';
@@ -19,16 +19,19 @@ const GenericInputField = ({
 }) => {
   const {colors} = useTheme();
   const styles = useStyles();
+  const [height, setHeight] = useState(40);
 
   return (
     <>
       <Text content>{label}</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, {height}]}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={colors.secondaryText}
         keyboardType={inputType}
+        multiline
+        onContentSizeChange={e => setHeight(e.nativeEvent.contentSize.height)}
       />
     </>
   );
@@ -38,7 +41,6 @@ const useStyles = () => {
   const {colors} = useTheme();
   return StyleSheet.create({
     input: {
-      height: 40,
       borderColor: colors.primaryBorder,
       borderWidth: 1,
       borderRadius: 5,
