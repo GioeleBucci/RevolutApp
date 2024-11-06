@@ -4,7 +4,7 @@
       "id": "cb51",
       "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
       "amount": 120,
-      "store": "REMA",
+      "destination": "REMA",
       "date": "12/04/22",
       "category": "Groceries"
     },
@@ -12,7 +12,7 @@
       "id": "a1b2",
       "account": "fbd22697-c19f-4da2-a211-ff8fdf3e9fe6",
       "amount": 45,
-      "store": "Amazon",
+      "destination": "Amazon",
       "date": "15/05/24",
       "category": "Shopping"
     },
@@ -20,7 +20,7 @@
       "id": "a1b3",
       "account": "fbd22697-c19f-4da2-a211-ff8fdf3e9fe6",
       "amount": 45,
-      "store": "EBay",
+      "destination": "EBay",
       "date": "15/05/24",
       "category": "Shopping"
     },
@@ -28,14 +28,14 @@
       "id": "d3e4",
       "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
       "amount": 38,
-      "store": "McDonalds",
+      "destination": "McDonalds",
       "date": "20/06/24",
       "category": "Restaurants"
     },
     {
       "id": "c4ee",
       "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
-      "store": "27473727",
+      "destination": "27473727",
       "amount": "17",
       "date": "2024-11-19T19:16:00.000Z",
       "category": "Transfer"
@@ -43,7 +43,7 @@
     {
       "id": "ae40",
       "account": "81f53f39-c442-4a5f-8070-5422d8accbbf",
-      "store": "1647277",
+      "destination": "1647277",
       "amount": "15",
       "date": "2024/11/06",
       "category": "Transfer",

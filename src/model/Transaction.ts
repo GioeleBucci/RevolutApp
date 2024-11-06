@@ -30,7 +30,6 @@ class Transaction implements JSONSerializable {
     return this._amount;
   }
 
-
   get date(): Date {
     return this._date;
   }
@@ -46,7 +45,7 @@ class Transaction implements JSONSerializable {
   toJSON(): object {
     const json: any = {
       account: this._source,
-      store: this._destination,
+      destination: this._destination,
       amount: this._amount,
       date: this._date,
       category: this._category

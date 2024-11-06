@@ -102,7 +102,7 @@ const Dashboard = () => {
               <SpendingsLabel
                 key={index}
                 category={transaction.category}
-                store={transaction.store}
+                store={transaction.destination}
                 price={transaction.amount}
               />
             ))}

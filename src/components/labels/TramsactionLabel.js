@@ -22,7 +22,11 @@ const TransactionLabel = ({t}) => {
           />
         </View>
         <View style={styles.infoRowContainer}>
-          <Text content>Store: {t.store}</Text>
+          {t.category == 'Transfer' ? (
+            <Text content>To: {t.store}</Text>
+          ) : (
+            <Text content>Store: {t.store}</Text>
+          )}
           <Text content>Date: {t.date}</Text>
           <Text content>Amount: {t.amount}€</Text>
           <Text content>Account: {shortenUUID(t.account)}</Text>
