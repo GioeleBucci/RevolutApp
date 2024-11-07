@@ -13,6 +13,7 @@ import MonthlySpendingsList from '../components/lists/MonthlySpendingsList';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
 import parseDate from '../commons/parseDate';
+import formatDate from '../commons/formatDate';
 
 const Dashboard = () => {
   const styles = useStyles();
@@ -21,27 +22,32 @@ const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [spendings, setSpendings] = useState([]);
+  const [fromDate, setFromDate] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
       console.log('Fetching data for Dashboard');
       fetchData(Endpoints.ACCOUNTS, setAccounts);
-      fetchData(Endpoints.TRANSACTIONS, setTransactions);
-      const lastMonthTransactions = filterLastMonthTransactions(transactions);
-      setSpendings(calculateMonthlySpendings(lastMonthTransactions));
+      fetchData(Endpoints.TRANSACTIONS, data => {
+        setTransactions(data);
+        const now = new Date();
+        const fromDate = new Date(now.setMonth(now.getMonth() - 1));
+        setFromDate(fromDate);
+        const lastMonthTransactions = filterTransactionByDate(
+          data,
+          fromDate,
+          new Date(),
+        );
+        setSpendings(calculateMonthlySpendings(lastMonthTransactions));
+      });
     }, []),
   );
 
-  const filterLastMonthTransactions = transactions => {
-    const now = new Date();
-    const toDate = new Date();
-    const fromDate = new Date(now.setMonth(now.getMonth() - 1));
-    const out = transactions.filter(transaction => {
+  const filterTransactionByDate = (transactions, fromDate, toDate) => {
+    return transactions.filter(transaction => {
       const transactionDate = parseDate(transaction.date);
       return transactionDate >= fromDate && transactionDate <= toDate;
     });
-    out.forEach(t => console.log(t));
-    return out;
   };
 
   const calculateMonthlySpendings = transactions => {
@@ -55,7 +61,6 @@ const Dashboard = () => {
       }
       return acc;
     }, {});
-
     return Object.entries(spendingsMap).map(([category, amount]) => [
       category,
       amount,
@@ -100,7 +105,10 @@ const Dashboard = () => {
               />
             ))}
         </LatestTransactionsList>
-        <MonthlySpendingsList spendings={spendings} label={'we'} />
+        <MonthlySpendingsList
+          spendings={spendings}
+          label={`Monthly spendings (from ${formatDate(fromDate)})`}
+        />
       </ScrollView>
     </SafeAreaView>
   );
