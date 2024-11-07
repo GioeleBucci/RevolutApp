@@ -48,16 +48,24 @@
       "date": "2024/11/06",
       "category": "Transfer",
       "message": "test test"
+    },
+    {
+      "id": "3889",
+      "account": "PJ96XSQDTWRP3UUP",
+      "destination": "hbb",
+      "amount": -900,
+      "date": "2024/11/07",
+      "category": "Transfer"
     }
   ],
   "accounts": [
     {
       "id": "PJ96XSQDTWRP3UUP",
-      "balance": "1293"
+      "balance": 393
     },
     {
       "id": "578G4ND59T59JRB2",
-      "balance": "954"
+      "balance": 954
     }
   ]
 }

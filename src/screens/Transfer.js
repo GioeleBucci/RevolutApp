@@ -82,7 +82,7 @@ const Transfer2 = () => {
       destinationAccount,
       -amount,
       formatTime(date),
-      Categories.Other,
+      Categories.Transfer,
       message,
     );
     try {
