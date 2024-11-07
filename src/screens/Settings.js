@@ -6,7 +6,6 @@ import {useTheme} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import DarkMode from '../assets/svg/DarkMode';
 import LightMode from '../assets/svg/LightMode';
-import RNRestart from 'react-native-restart';
 import {useTranslation} from 'react-i18next';
 import {CheckBox} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';

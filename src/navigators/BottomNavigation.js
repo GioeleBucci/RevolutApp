@@ -59,11 +59,11 @@ const BottomNavigation = ({navigationRef}) => {
       />
       <Tab.Screen
         name="Settings"
-        component={props => <Settings {...props} navigationRef={navigationRef} />}
         options={{
           tabBarIcon: SettingsIco,
-        }}
-      />
+        }}>
+        {props => <Settings {...props} navigationRef={navigationRef} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
