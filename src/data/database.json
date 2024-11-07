@@ -5,7 +5,7 @@
       "account": "PJ96XSQDTWRP3UUP",
       "amount": "-120",
       "destination": "REMA",
-      "date": "12/04/22",
+      "date": "2024/10/07",
       "category": "Groceries"
     },
     {
@@ -13,7 +13,7 @@
       "account": "578G4ND59T59JRB2",
       "amount": "-45",
       "destination": "Amazon",
-      "date": "15/05/24",
+      "date": "2024/11/01",
       "category": "Shopping"
     },
     {
@@ -21,7 +21,7 @@
       "account": "PJ96XSQDTWRP3UUP",
       "amount": "-45",
       "destination": "EBay",
-      "date": "15/05/24",
+      "date": "2024/10/02",
       "category": "Shopping"
     },
     {
@@ -29,7 +29,7 @@
       "account": "578G4ND59T59JRB2",
       "amount": "-38",
       "destination": "McDonalds",
-      "date": "20/06/24",
+      "date": "2024/10/05",
       "category": "Restaurants"
     },
     {
@@ -37,7 +37,7 @@
       "account": "578G4ND59T59JRB2",
       "destination": "2WGWN1UVYRZKGDAM",
       "amount": "-17",
-      "date": "2024-11-19T19:16:00.000Z",
+      "date": "2024/11/05",
       "category": "Transfer"
     },
     {
@@ -52,8 +52,8 @@
     {
       "id": "3889",
       "account": "PJ96XSQDTWRP3UUP",
-      "destination": "hbb",
-      "amount": -900,
+      "destination": "3FTEVPGB5XWPR43",
+      "amount": -200,
       "date": "2024/11/07",
       "category": "Transfer"
     }
