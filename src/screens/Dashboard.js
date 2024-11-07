@@ -1,18 +1,13 @@
 import {useNavigation, useTheme} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import Text from '../components/common/Text';
-import AddCircle from '../assets/svg/AddCircle';
-import {Payment} from '../assets';
 import SpendingsLabel from '../components/labels/SpendingsLabel';
-import Categories from '../model/Categories';
 import BalanceLabel from '../components/labels/BalanceLabel';
 import LatestTransactionsList from '../components/lists/LatestTransactionsList';
 import MonthlySpendingsList from '../components/lists/MonthlySpendingsList';
@@ -50,24 +45,6 @@ const Dashboard = () => {
   };
 
   const spendings = calculateSpendings(transactions);
-
-  const SchedulePayment = () => {
-    return (
-      <View style={styles.paymentView}>
-        <TouchableOpacity>
-          <AddCircle />
-        </TouchableOpacity>
-        <Text title style={styles.paymentText}>
-          Schedule a{'\n'}new payment
-        </Text>
-        <Image
-          source={Payment}
-          style={styles.paymentImage}
-          resizeMode="contain"
-        />
-      </View>
-    );
-  };
 
   const welcomeMessage = (
     <View style={{marginBottom: 10}}>
@@ -107,10 +84,7 @@ const Dashboard = () => {
               />
             ))}
         </LatestTransactionsList>
-
         <MonthlySpendingsList spendings={spendings} />
-
-        {/* <SchedulePayment /> */}
       </ScrollView>
     </SafeAreaView>
   );

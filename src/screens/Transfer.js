@@ -95,14 +95,6 @@ const Transfer2 = () => {
     }
   };
 
-  const handleCancel = () => {
-    // Handle the cancel logic here
-    setSourceAccount('');
-    setDestinationAccount('');
-    setAmount('');
-    setMessage('');
-  };
-
   return (
     <Screen title={'Transfer'}>
       <SafeAreaView style={styles.container}>
@@ -149,11 +141,6 @@ const Transfer2 = () => {
           </View>
           <View style={styles.buttonContainer}>
             <GenericButton
-              title="Cancel"
-              titleColor="red"
-              onPress={handleCancel}
-            />
-            <GenericButton
               title="Submit"
               titleColor="green"
               onPress={handleTransfer}
@@ -192,7 +179,7 @@ const useStyles = () => {
       marginTop: 10,
     },
     buttonContainer: {
-      flexDirection: 'row',
+      flexDirection: 'row-reverse',
       justifyContent: 'space-between',
       marginTop: 40,
     },
