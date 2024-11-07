@@ -10,6 +10,7 @@ import {useTranslation} from 'react-i18next';
 import {CheckBox} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import storagePut from '../commons/storage/storagePut';
+import GenericButton from '../components/buttons/GenericButton';
 
 const Settings = ({navigationRef}) => {
   const {colors} = useTheme();
@@ -47,17 +48,25 @@ const Settings = ({navigationRef}) => {
     }
   };
 
-  const Header = () => {
+  const ThemeButton = () => {
+    return (
+      <GenericButton
+        title={t(isDarkMode ? 'settings.light' : 'settings.dark')}
+        RightComponent={() => (isDarkMode ? <LightMode /> : <DarkMode />)}
+        onPress={changeTheme}
+      />
+    );
+  };
+
+  const ThemeToggler = () => {
     return (
       <View style={styles.header}>
-        <TouchableOpacity onPress={changeTheme}>
-          {isDarkMode ? <LightMode /> : <DarkMode />}
-        </TouchableOpacity>
+        <ThemeButton />
       </View>
     );
   };
 
-  const DummyCheckbox = () => {
+  const LanguageCheckBox = () => {
     return (
       <View>
         <CheckBox
@@ -87,9 +96,10 @@ const Settings = ({navigationRef}) => {
   return (
     <Screen title={t('settings.screen_name')}>
       <View style={styles.container}>
-        <Header />
+        <Text title>{t('settings.theme')}</Text>
+        <ThemeToggler />
         <Text title>{t('settings.language')}</Text>
-        <DummyCheckbox />
+        <LanguageCheckBox />
       </View>
     </Screen>
   );

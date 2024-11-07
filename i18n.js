@@ -59,6 +59,9 @@ i18n
           settings: {
             screen_name: 'Settings',
             language: 'Language',
+            theme: 'Theme',
+            light: 'Change to Light Theme',
+            dark: 'Change to Dark Theme',
           },
         },
       },
@@ -107,6 +110,9 @@ i18n
           settings: {
             screen_name: 'Impostazioni',
             language: 'Lingua',
+            theme: 'Tema',
+            light: 'Seleziona Tema Chiaro',
+            dark: 'Seleziona Tema Scuro',
           },
         },
       },

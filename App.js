@@ -4,6 +4,7 @@ import Navigation from './src/navigators/Navigation';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {I18nextProvider, useTranslation} from 'react-i18next';
 import storageFetch from './src/commons/storage/storageFetch';
+import i18n from './i18n';
 
 const App = () => {
   const navigationRef = useRef();
