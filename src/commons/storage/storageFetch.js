@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const fetchTheme = async key => {
+const storageFetch = async key => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
@@ -15,4 +15,4 @@ const fetchTheme = async key => {
   }
 };
 
-export default fetchTheme;
+export default storageFetch;
