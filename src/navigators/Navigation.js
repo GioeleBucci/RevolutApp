@@ -10,15 +10,13 @@ import {Appearance} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getThemeObject} from '../theme/Theme';
-import {useSelector} from 'react-redux';
 import RootStackNavigator from './RootStackNavigator';
 
 const Stack = createStackNavigator();
 
 const Navigation = forwardRef((props, ref) => {
-  const dark = useSelector(state => state.app.dark);
   const isDarkMode = Appearance.getColorScheme() === 'dark';
-  const [theme, setTheme] = useState(getThemeObject(dark));
+  const [theme, setTheme] = useState(getThemeObject(2));
   const changeTheme = isDarkMode => {
     // 0 means default , 1 means light, 2 means dark
     setTheme(

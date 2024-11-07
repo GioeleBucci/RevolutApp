@@ -1,4 +1,3 @@
-import uuid from 'react-native-uuid';
 import BankAccountView from './api/BankAccountView';
 
 class BankAccount implements BankAccountView, JSONSerializable {

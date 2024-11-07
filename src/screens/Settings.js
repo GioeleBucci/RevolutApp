@@ -1,27 +1,53 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Text from '../components/common/Text';
 import Screen from '../components/common/Screen';
 import {useTheme} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
 import DarkMode from '../assets/svg/DarkMode';
 import LightMode from '../assets/svg/LightMode';
-import {toggleTheme} from '../store/appReducer';
 import RNRestart from 'react-native-restart';
 import {useTranslation} from 'react-i18next';
 import {CheckBox} from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Settings = () => {
   const {colors} = useTheme();
   const styles = useStyles();
-  const dispatch = useDispatch();
-  const dark = useSelector(state => state.app.dark);
-  const {t, i18n} = useTranslation();
-  const toggle = value => {
-    dispatch(toggleTheme(value));
-    RNRestart.Restart();
+  const {t, i18n} = useTranslation(); // todo add dark property to store
+  const DARK = 'dark';
+  // const dispatch = useDispatch();
+  // const dark = useSelector(state => state.app.dark);
+  // const toggle = value => {
+  //   dispatch(toggleTheme(value));
+  //   RNRestart.Restart();
+  // };
+
+  useEffect(() => {
+    onColorChangeComplete(1);
+  }, []);
+
+  const updateCardColor = async () => {
+    try {
+      const value = await AsyncStorage.getItem(DARK);
+      if (value !== null) {
+        setCardbgcolor(value);
+      }
+    } catch (e) {
+      return null;
+    }
   };
+
+  // 0 = default, 1 = light, 2 = dark
+  const onColorChangeComplete = async color => {
+    try {
+      await AsyncStorage.setItem(DARK, color);
+    } catch (e) {
+      console.log('Error setting color:', e);
+    }
+  };
+
+  const dark = '2';
 
   const Header = () => {
     return (
@@ -34,8 +60,6 @@ const Settings = () => {
   };
 
   const DummyCheckbox = () => {
-    const [selectedItem, setSelectedItem] = React.useState(null);
-
     return (
       <View>
         <CheckBox
