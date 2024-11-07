@@ -4,7 +4,7 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 import React, {useState, useCallback} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View, ActivityIndicator} from 'react-native';
 import Text from '../components/common/Text';
 import SpendingsLabel from '../components/labels/SpendingsLabel';
 import BalanceLabel from '../components/labels/BalanceLabel';
@@ -14,6 +14,7 @@ import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
 import parseDate from '../commons/parseDate';
 import formatDate from '../commons/formatDate';
+import {useTranslation} from 'react-i18next';
 
 const Dashboard = () => {
   const styles = useStyles();
@@ -23,23 +24,31 @@ const Dashboard = () => {
   const [transactions, setTransactions] = useState([]);
   const [spendings, setSpendings] = useState([]);
   const [fromDate, setFromDate] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const {t, i18n} = useTranslation();
 
   useFocusEffect(
     useCallback(() => {
-      console.log('Fetching data for Dashboard');
-      fetchData(Endpoints.ACCOUNTS, setAccounts);
-      fetchData(Endpoints.TRANSACTIONS, data => {
-        setTransactions(data);
-        const now = new Date();
-        const fromDate = new Date(now.setMonth(now.getMonth() - 1));
-        setFromDate(fromDate);
-        const lastMonthTransactions = filterTransactionByDate(
-          data,
-          fromDate,
-          new Date(),
-        );
-        setSpendings(calculateMonthlySpendings(lastMonthTransactions));
-      });
+      const fetchDataAsync = async () => {
+        console.log('Fetching data for Dashboard');
+        await fetchData(Endpoints.ACCOUNTS, setAccounts);
+        await fetchData(Endpoints.TRANSACTIONS, data => {
+          setTransactions(data);
+          const now = new Date();
+          const fromDate = new Date(now.setMonth(now.getMonth() - 1));
+          setFromDate(fromDate);
+          const lastMonthTransactions = filterTransactionByDate(
+            data,
+            fromDate,
+            new Date(),
+          );
+          setSpendings(calculateMonthlySpendings(lastMonthTransactions));
+        });
+        setLoading(false);
+      };
+
+      fetchDataAsync();
     }, []),
   );
 
@@ -73,10 +82,18 @@ const Dashboard = () => {
         Dashboard 💸
       </Text>
       <Text small style={styles.subTitle}>
-        Welcome back! Your savings are doing just fine.
+        {t('dashboard.welcome')}
       </Text>
     </View>
   );
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -107,7 +124,7 @@ const Dashboard = () => {
         </LatestTransactionsList>
         <MonthlySpendingsList
           spendings={spendings}
-          label={`Monthly Spendings (from ${formatDate(fromDate)})`}
+          label={`${t('dashboard.monthly_spending')} ${formatDate(fromDate)})`}
         />
       </ScrollView>
     </SafeAreaView>

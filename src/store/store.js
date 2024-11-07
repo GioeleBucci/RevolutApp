@@ -11,10 +11,8 @@ import {
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import appReducer from './appReducer';
-import authReducer from './authReducer';
 
 const reducers = combineReducers({
-  auth: authReducer,
   app: appReducer,
 });
 

@@ -3,6 +3,7 @@ import {View, TouchableOpacity, ScrollView, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Text from '../common/Text';
 import SpendingsLabel from '../labels/SpendingsLabel';
+import {useTranslation} from 'react-i18next';
 
 /**
  * @param {SpendingsLabel} children - The SpendingsLabel to be rendered in the list.
@@ -10,10 +11,12 @@ import SpendingsLabel from '../labels/SpendingsLabel';
 const LatestTransactionsList = ({children}) => {
   const styles = useStyles();
 
+  const {t, i18n} = useTranslation();
+
   return (
     <View style={styles.balanceList}>
       <View style={styles.header}>
-        <Text content>Latest Transactions</Text>
+        <Text content>{t('dashboard.latest_transactions')}</Text>
       </View>
       <ScrollView style={styles.transactionsList} nestedScrollEnabled={true}>
         {children}
