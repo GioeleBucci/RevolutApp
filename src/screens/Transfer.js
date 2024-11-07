@@ -13,6 +13,7 @@ import {fetchData} from '../commons/rest/datafetcher';
 import Transaction from '../model/Transaction';
 import Categories from '../model/Categories';
 import {postData} from '../commons/rest/dataposter';
+import {putData} from '../commons/rest/dataputter';
 
 const Transfer2 = () => {
   const styles = useStyles();
@@ -33,9 +34,43 @@ const Transfer2 = () => {
     });
   }, []);
 
+  function setBalance(accountID, balance) {
+    try {
+      putData(Endpoints.ACCOUNTS, accountID, {
+        id: accountID,
+        balance: balance,
+      });
+    } catch (error) {
+      throw new Error(`Failed to update balance for ID ${accountID}: `, error);
+    }
+  }
+
+  function performTransaction(from, to, amount) {
+    const originalBalance = parseFloat(accounts[from]); // Snapshot
+    amount = parseFloat(amount);
+    try {
+      setBalance(from, originalBalance - amount);
+      // if destination account belongs to the user update its balance as well
+      if (accounts[to]) {
+        let destinationBalance = parseFloat(accounts[to]);
+        setBalance(to, destinationBalance + amount);
+      }
+    } catch (error) {
+      console.error('Transaction failed, rolling back:', error);
+      this.setBalance(originalBalance);
+    }
+  }
+
   const handleTransfer = () => {
     if (!sourceAccount || !destinationAccount || !amount || !date) {
       Alert.alert('Transfer failed', 'Please fill all fields');
+      return;
+    }
+    if (sourceAccount === destinationAccount) {
+      Alert.alert(
+        'Transfer failed',
+        'Source and destination cannot be the same',
+      );
       return;
     }
     if (parseFloat(accounts[sourceAccount]) < amount) {
@@ -50,7 +85,14 @@ const Transfer2 = () => {
       Categories.Other,
       message,
     );
-    postData(Endpoints.TRANSACTIONS, transfer.toJSON());
+    try {
+      performTransaction(sourceAccount, destinationAccount, amount);
+      postData(Endpoints.TRANSACTIONS, transfer.toJSON());
+      Alert.alert('Transfer successful', 'Transaction completed');
+    } catch (error) {
+      console.error('Error during transfer:', error);
+      Alert.alert('Transfer failed', 'An error occurred!');
+    }
   };
 
   const handleCancel = () => {

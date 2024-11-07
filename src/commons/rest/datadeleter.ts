@@ -2,8 +2,6 @@ import Endpoints, { URL } from "./endpoints";
 
 export async function deleteData(endpoint: Endpoints, key: string): Promise<any> {
   try {
-    console.log('Data to be deleted:', key);
-
     const response = await fetch(`${URL}/${endpoint}/${key}`, {
       method: 'DELETE',
       headers: {

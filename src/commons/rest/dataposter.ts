@@ -2,8 +2,6 @@ import Endpoints, { URL } from "./endpoints";
 
 export async function postData(endpoint: Endpoints, data: any): Promise<any> {
   try {
-    console.log('Data to be posted:', data);
-
     const response = await fetch(`${URL}/${endpoint}`, {
       method: 'POST',
       headers: {

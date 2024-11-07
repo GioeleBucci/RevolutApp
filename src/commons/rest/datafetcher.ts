@@ -9,7 +9,6 @@ export async function fetchData(endpoint: Endpoints, setItems: (items: any) => v
     }
 
     const data = await response.json();
-    console.log(data);
     setItems(data);
   } catch (error) {
     console.error('Error fetching data:', error);

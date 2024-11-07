@@ -2,8 +2,6 @@ import Endpoints, { URL } from "./endpoints";
 
 export async function putData(endpoint: Endpoints, key: string, newData: any): Promise<any> {
   try {
-    console.log('Data to be updated:', newData);
-
     const response = await fetch(`${URL}/${endpoint}/${key}`, {
       method: 'PUT',
       headers: {
