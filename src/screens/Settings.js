@@ -39,6 +39,7 @@ const Settings = ({navigationRef}) => {
       const newTheme = !isDarkMode;
       await AsyncStorage.setItem(DARK, newTheme.toString());
       setIsDarkMode(newTheme);
+      console.log('Theme changed to:', newTheme);
       navigationRef.current.toggleTheme(); // Call the toggleTheme method
     } catch (e) {
       console.log('Error setting color:', e);

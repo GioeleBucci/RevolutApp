@@ -23,7 +23,7 @@ const Navigation = forwardRef((props, ref) => {
       if (value === null) {
         setTheme(getThemeObject(theme.dark));
       } else {
-        setTheme(getThemeObject(theme.value));
+        setTheme(getThemeObject(value == 'true' ? theme.dark : theme.white));
       }
     });
   }, []);
