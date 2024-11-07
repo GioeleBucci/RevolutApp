@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Text from '../components/common/Text';
 import Screen from '../components/common/Screen';
@@ -24,24 +24,26 @@ const Settings = () => {
   // };
 
   useEffect(() => {
-    onColorChangeComplete(1);
+    fetchTheme().then(value => {
+      console.log('value:', value);
+    });
   }, []);
 
-  const updateCardColor = async () => {
+  const fetchTheme = async () => {
     try {
       const value = await AsyncStorage.getItem(DARK);
       if (value !== null) {
-        setCardbgcolor(value);
+        return value;
       }
     } catch (e) {
       return null;
     }
   };
 
-  // 0 = default, 1 = light, 2 = dark
-  const onColorChangeComplete = async color => {
+  // true for dark, false for light
+  const changeTheme = async color => {
     try {
-      await AsyncStorage.setItem(DARK, color);
+      await AsyncStorage.setItem(DARK, !color);
     } catch (e) {
       console.log('Error setting color:', e);
     }
