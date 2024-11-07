@@ -138,6 +138,7 @@ const useStyles = () => {
       flex: 1,
       backgroundColor: colors.background,
       paddingHorizontal: 10,
+      paddingVertical: 20,
     },
     title: {
       marginTop: 10,

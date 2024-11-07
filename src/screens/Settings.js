@@ -9,6 +9,7 @@ import LightMode from '../assets/svg/LightMode';
 import {useTranslation} from 'react-i18next';
 import {CheckBox} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import storagePut from '../commons/storage/storagePut';
 
 const Settings = ({navigationRef}) => {
   const {colors} = useTheme();
@@ -39,7 +40,7 @@ const Settings = ({navigationRef}) => {
       const newTheme = !isDarkMode;
       await AsyncStorage.setItem(DARK, newTheme.toString());
       setIsDarkMode(newTheme);
-      console.log('Theme changed to:', newTheme);
+      console.log('Theme changed to:', newTheme ? 'dark' : 'light');
       navigationRef.current.toggleTheme(); // Call the toggleTheme method
     } catch (e) {
       console.log('Error setting color:', e);
@@ -66,6 +67,7 @@ const Settings = ({navigationRef}) => {
           checked={i18n.language === 'en'}
           onPress={() => {
             i18n.changeLanguage('en');
+            storagePut('language', 'en');
           }}
         />
         <CheckBox
@@ -75,6 +77,7 @@ const Settings = ({navigationRef}) => {
           checked={i18n.language === 'it'}
           onPress={() => {
             i18n.changeLanguage('it');
+            storagePut('language', 'it');
           }}
         />
       </View>
