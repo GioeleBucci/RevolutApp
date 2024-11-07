@@ -4,8 +4,6 @@ import Text from '../components/common/Text';
 import Screen from '../components/common/Screen';
 import {useTheme} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Me} from '../assets';
-import BurgerMenu from '../assets/svg/BurgerMenu';
 import {useDispatch, useSelector} from 'react-redux';
 import DarkMode from '../assets/svg/DarkMode';
 import LightMode from '../assets/svg/LightMode';
@@ -26,22 +24,6 @@ const Settings = () => {
   const Header = () => {
     return (
       <View style={styles.header}>
-        <BurgerMenu />
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Profile')}
-          style={{
-            backgroundColor: colors.blacknWhite,
-            borderRadius: 100,
-          }}>
-          <Image
-            source={Me}
-            style={{
-              top: 1,
-              width: 70,
-              height: 70,
-            }}
-          />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => toggle(dark == '2' ? '1' : '2')}>
           {dark == '2' ? <LightMode /> : <DarkMode />}
         </TouchableOpacity>

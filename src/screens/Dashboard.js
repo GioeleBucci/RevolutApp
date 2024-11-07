@@ -107,7 +107,7 @@ const Dashboard = () => {
         </LatestTransactionsList>
         <MonthlySpendingsList
           spendings={spendings}
-          label={`Monthly spendings (from ${formatDate(fromDate)})`}
+          label={`Monthly Spendings (from ${formatDate(fromDate)})`}
         />
       </ScrollView>
     </SafeAreaView>
