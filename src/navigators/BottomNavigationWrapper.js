@@ -3,12 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import BottomNavigation from '../navigators/BottomNavigation';
 
-const BottomNavigationWrapper = () => {
+const BottomNavigationWrapper = ({navigationRef}) => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <BottomNavigation navigation={navigation} />
+      <BottomNavigation navigation={navigation} navigationRef={navigationRef} />
     </View>
   );
 };

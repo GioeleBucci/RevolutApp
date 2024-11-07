@@ -20,7 +20,7 @@ const SettingsIco = ({focused}) => <SettingsIcon focused={focused} />;
 
 const TransferIco = ({focused}) => <TrasferIcon focused={focused} />;
 
-const BottomNavigation = () => {
+const BottomNavigation = ({navigationRef}) => {
   const {colors} = useTheme();
 
   return (
@@ -59,7 +59,7 @@ const BottomNavigation = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={props => <Settings {...props} navigationRef={navigationRef} />}
         options={{
           tabBarIcon: SettingsIco,
         }}

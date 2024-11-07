@@ -4,7 +4,7 @@ import AppNavigator from './AppNavigator';
 
 const RootStack = createStackNavigator();
 
-const RootStackNavigator = () => {
+const RootStackNavigator = ({navigationRef}) => {
   return (
     <RootStack.Navigator
       screenOptions={{
@@ -13,11 +13,9 @@ const RootStackNavigator = () => {
         gestureEnabled: false,
         presentation: 'modal',
       }}>
-      <RootStack.Screen
-        name="App"
-        component={AppNavigator}
-        options={{headerShown: false}}
-      />
+      <RootStack.Screen name="App" options={{headerShown: false}}>
+        {props => <AppNavigator {...props} navigationRef={navigationRef} />}
+      </RootStack.Screen>
     </RootStack.Navigator>
   );
 };

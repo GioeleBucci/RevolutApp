@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Text from '../components/common/Text';
 import Screen from '../components/common/Screen';
@@ -11,21 +11,16 @@ import {useTranslation} from 'react-i18next';
 import {CheckBox} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Settings = () => {
+const Settings = ({navigationRef}) => {
   const {colors} = useTheme();
   const styles = useStyles();
-  const {t, i18n} = useTranslation(); // todo add dark property to store
+  const {t, i18n} = useTranslation();
   const DARK = 'dark';
-  // const dispatch = useDispatch();
-  // const dark = useSelector(state => state.app.dark);
-  // const toggle = value => {
-  //   dispatch(toggleTheme(value));
-  //   RNRestart.Restart();
-  // };
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     fetchTheme().then(value => {
-      console.log('value:', value);
+      setIsDarkMode(value === 'true');
     });
   }, []);
 
@@ -40,22 +35,22 @@ const Settings = () => {
     }
   };
 
-  // true for dark, false for light
-  const changeTheme = async color => {
+  const changeTheme = async () => {
     try {
-      await AsyncStorage.setItem(DARK, !color);
+      const newTheme = !isDarkMode;
+      await AsyncStorage.setItem(DARK, newTheme.toString());
+      setIsDarkMode(newTheme);
+      navigationRef.current.toggleTheme(); // Call the toggleTheme method
     } catch (e) {
       console.log('Error setting color:', e);
     }
   };
 
-  const dark = '2';
-
   const Header = () => {
     return (
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => toggle(dark == '2' ? '1' : '2')}>
-          {dark == '2' ? <LightMode /> : <DarkMode />}
+        <TouchableOpacity onPress={changeTheme}>
+          {isDarkMode ? <LightMode /> : <DarkMode />}
         </TouchableOpacity>
       </View>
     );

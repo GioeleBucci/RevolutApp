@@ -41,7 +41,7 @@ const Navigation = forwardRef((props, ref) => {
 
   return (
     <NavigationContainer theme={theme}>
-      <RootStackNavigator />
+      <RootStackNavigator navigationRef={ref} />
     </NavigationContainer>
   );
 });
