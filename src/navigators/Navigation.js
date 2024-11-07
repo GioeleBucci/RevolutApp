@@ -10,7 +10,6 @@ import {Appearance} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getThemeObject} from '../theme/Theme';
-import Login from '../screens/Dashboard';
 import {useSelector} from 'react-redux';
 import RootStackNavigator from './RootStackNavigator';
 

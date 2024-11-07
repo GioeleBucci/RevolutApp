@@ -37,7 +37,7 @@ const Transactions = () => {
       <SafeAreaView style={styles.container}>
         <ScrollView style={{paddingHorizontal: 20}}>
           <Filter
-            placeholder={'Search...'}
+            placeholder={'Filter for date or destination'}
             updateElements={updateTransactions}
           />
           {filteredTransactions.map((transaction, _index) => (
