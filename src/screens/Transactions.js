@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import {useFocusEffect, useTheme} from '@react-navigation/native';
 import TransactionLabel from '../components/labels/TramsactionLabel';
 import {ScrollView} from 'react-native-gesture-handler';
 import Screen from '../components/common/Screen';
@@ -25,12 +25,15 @@ const Transactions = () => {
     setFilteredTransactions(filtered);
   };
 
-  useEffect(() => {
-    fetchData(Endpoints.TRANSACTIONS, data => {
-      setTransactions(data);
-      setFilteredTransactions(data);
-    });
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      console.log('Fetching data for Transactions page');
+      fetchData(Endpoints.TRANSACTIONS, data => {
+        setTransactions(data);
+        setFilteredTransactions(data);
+      });
+    }, []),
+  );
 
   return (
     <Screen title={'Transactions'}>

@@ -1,11 +1,10 @@
-import {useNavigation, useTheme} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+  useNavigation,
+  useTheme,
+  useFocusEffect,
+} from '@react-navigation/native';
+import React, {useState, useCallback} from 'react';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import Text from '../components/common/Text';
 import SpendingsLabel from '../components/labels/SpendingsLabel';
 import BalanceLabel from '../components/labels/BalanceLabel';
@@ -21,10 +20,13 @@ const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
-  useEffect(() => {
-    fetchData(Endpoints.ACCOUNTS, setAccounts);
-    fetchData(Endpoints.TRANSACTIONS, setTransactions);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      console.log('Fetching data for Dashboard');
+      fetchData(Endpoints.ACCOUNTS, setAccounts);
+      fetchData(Endpoints.TRANSACTIONS, setTransactions);
+    }, []),
+  );
 
   const calculateSpendings = transactions => {
     const spendingsMap = transactions.reduce((acc, transaction) => {
