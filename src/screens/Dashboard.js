@@ -12,6 +12,7 @@ import LatestTransactionsList from '../components/lists/LatestTransactionsList';
 import MonthlySpendingsList from '../components/lists/MonthlySpendingsList';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
+import parseDate from '../commons/parseDate';
 
 const Dashboard = () => {
   const styles = useStyles();
@@ -19,16 +20,31 @@ const Dashboard = () => {
   const navigation = useNavigation();
   const [accounts, setAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [spendings, setSpendings] = useState([]);
 
   useFocusEffect(
     useCallback(() => {
       console.log('Fetching data for Dashboard');
       fetchData(Endpoints.ACCOUNTS, setAccounts);
       fetchData(Endpoints.TRANSACTIONS, setTransactions);
+      const lastMonthTransactions = filterLastMonthTransactions(transactions);
+      setSpendings(calculateMonthlySpendings(lastMonthTransactions));
     }, []),
   );
 
-  const calculateSpendings = transactions => {
+  const filterLastMonthTransactions = transactions => {
+    const now = new Date();
+    const toDate = new Date();
+    const fromDate = new Date(now.setMonth(now.getMonth() - 1));
+    const out = transactions.filter(transaction => {
+      const transactionDate = parseDate(transaction.date);
+      return transactionDate >= fromDate && transactionDate <= toDate;
+    });
+    out.forEach(t => console.log(t));
+    return out;
+  };
+
+  const calculateMonthlySpendings = transactions => {
     const spendingsMap = transactions.reduce((acc, transaction) => {
       const category = transaction.category;
       const amount = parseFloat(transaction.amount);
@@ -45,8 +61,6 @@ const Dashboard = () => {
       amount,
     ]);
   };
-
-  const spendings = calculateSpendings(transactions);
 
   const welcomeMessage = (
     <View style={{marginBottom: 10}}>
@@ -76,7 +90,7 @@ const Dashboard = () => {
 
         <LatestTransactionsList>
           {transactions
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .sort((a, b) => parseDate(b.date) - parseDate(a.date))
             .map((transaction, index) => (
               <SpendingsLabel
                 key={index}
@@ -86,7 +100,7 @@ const Dashboard = () => {
               />
             ))}
         </LatestTransactionsList>
-        <MonthlySpendingsList spendings={spendings} />
+        <MonthlySpendingsList spendings={spendings} label={'we'} />
       </ScrollView>
     </SafeAreaView>
   );

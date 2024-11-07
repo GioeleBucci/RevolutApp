@@ -7,9 +7,10 @@ import MonthlySpendingsLabel from '../labels/MonthlySpendingLabel';
 /**
  * MonthlySpendingsList component renders a sorted list of monthly spendings.
  *
+ * @param label - The label to display at the top of the list.
  * @param spendings - An array of (k, v) pairs where keys are spending categories and values are amounts.
  */
-const MonthlySpendingsList = ({spendings}) => {
+const MonthlySpendingsList = ({spendings, label}) => {
   const sortedSpendings = spendings.sort(([, a], [, b]) => a - b);
 
   const styles = useStyles();
@@ -17,7 +18,7 @@ const MonthlySpendingsList = ({spendings}) => {
   return (
     <View style={styles.balanceList}>
       <View style={styles.header}>
-        <Text content>Monthly Spendings</Text>
+        <Text content>{label}</Text>
       </View>
       <ScrollView style={styles.transactionsList} nestedScrollEnabled={true}>
         {sortedSpendings.map(([category, amount], index) => (

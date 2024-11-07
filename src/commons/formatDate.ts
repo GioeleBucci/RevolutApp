@@ -1,3 +1,3 @@
-export default function formatTime(date: Date): string {
+export default function formatDate(date: Date): string {
   return date.toISOString().split('T')[0].replace(/-/g, '/');
 }

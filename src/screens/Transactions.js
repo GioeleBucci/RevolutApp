@@ -7,6 +7,7 @@ import Screen from '../components/common/Screen';
 import Filter from '../components/inputs/Filter';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
+import parseDate from '../commons/parseDate';
 
 const Transactions = () => {
   const styles = useStyles();
@@ -43,9 +44,11 @@ const Transactions = () => {
             placeholder={'Filter for date or destination'}
             updateElements={updateTransactions}
           />
-          {filteredTransactions.map((transaction, _index) => (
-            <TransactionLabel key={transaction.id} t={transaction} />
-          ))}
+          {filteredTransactions
+            .sort((a, b) => parseDate(b.date) - parseDate(a.date))
+            .map((transaction, _index) => (
+              <TransactionLabel key={transaction.id} t={transaction} />
+            ))}
         </ScrollView>
       </SafeAreaView>
     </Screen>

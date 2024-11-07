@@ -6,7 +6,7 @@ import GenericInputField from '../components/inputs/GenericInputField';
 import ArrowDropdownList from '../components/inputs/ArrowDropdownList';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useTheme} from '@react-navigation/native';
-import formatTime from '../commons/FormatTime';
+import formatDate from '../commons/formatDate';
 import TextLabel from '../components/labels/TextLabel';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
@@ -81,7 +81,7 @@ const Transfer2 = () => {
       sourceAccount,
       destinationAccount,
       -amount,
-      formatTime(date),
+      formatDate(date),
       Categories.Transfer,
       message,
     );
@@ -126,14 +126,14 @@ const Transfer2 = () => {
             date={date}
             onConfirm={selectedDate => {
               setDatePickerVisibility(false);
-              const formattedDate = formatTime(selectedDate);
+              const formattedDate = formatDate(selectedDate);
               setDate(selectedDate);
               console.log('Selected date:', formattedDate);
             }}
             onCancel={() => setDatePickerVisibility(false)}
           />
           <View style={styles.dateContainer}>
-            <TextLabel label={'Date'} content={formatTime(date)} />
+            <TextLabel label={'Date'} content={formatDate(date)} />
             <GenericButton
               title="Change Date"
               onPress={() => setDatePickerVisibility(true)}
