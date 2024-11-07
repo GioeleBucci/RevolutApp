@@ -58,6 +58,7 @@ i18n
           },
           settings: {
             screen_name: 'Settings',
+            language: 'Language',
           },
         },
       },
@@ -105,6 +106,7 @@ i18n
           },
           settings: {
             screen_name: 'Impostazioni',
+            language: 'Lingua',
           },
         },
       },
