@@ -3,6 +3,7 @@ import {View, StyleSheet, Image} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Text from '../common/Text';
 import CategoryIcons from '../../assets/enums/CategoryIcons';
+import {useTranslation} from 'react-i18next';
 
 /**
  * @param category The category to display.
@@ -11,13 +12,14 @@ import CategoryIcons from '../../assets/enums/CategoryIcons';
 const MonthlySpendingsLabel = ({category, amount}) => {
   const styles = useStyles();
   const categoryIcon = CategoryIcons[category];
+  const {t} = useTranslation();
 
   return (
     <View style={styles.cardDetail}>
       <View style={styles.iconContainer}>
         <Image source={categoryIcon} style={styles.icon} resizeMode="contain" />
       </View>
-      <Text medium>{category}</Text>
+      <Text medium>{t(`categories.${category}`)}</Text>
       <Text content>{amount}€</Text>
     </View>
   );

@@ -9,12 +9,14 @@ import DarkMode from '../assets/svg/DarkMode';
 import LightMode from '../assets/svg/LightMode';
 import {toggleTheme} from '../store/appReducer';
 import RNRestart from 'react-native-restart';
+import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
   const {colors} = useTheme();
   const styles = useStyles();
   const dispatch = useDispatch();
   const dark = useSelector(state => state.app.dark);
+  const {t} = useTranslation();
 
   const toggle = value => {
     dispatch(toggleTheme(value));
@@ -32,7 +34,7 @@ const Settings = () => {
   };
 
   return (
-    <Screen title={'Settings'}>
+    <Screen title={t('settings.screen_name')}>
       <View style={styles.container}>
         <Header />
       </View>

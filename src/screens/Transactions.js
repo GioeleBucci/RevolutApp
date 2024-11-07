@@ -38,7 +38,7 @@ const Transactions = () => {
   );
 
   return (
-    <Screen title={'Transactions'}>
+    <Screen title={t('transactions.screen_name')}>
       <SafeAreaView style={styles.container}>
         <ScrollView style={{paddingHorizontal: 20}}>
           <Filter

@@ -99,7 +99,7 @@ const Transfer2 = () => {
   };
 
   return (
-    <Screen title={'Transfer'}>
+    <Screen title={t('transfer.screen_name')}>
       <SafeAreaView style={styles.container}>
         <View style={styles.elemContainer}>
           <GenericInputField

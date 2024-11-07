@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, StyleSheet, View, Modal, Button} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import Text from '../common/Text';
 import {TextInput} from 'react-native-gesture-handler';
 import FilterIcon from '../../assets/svg/FilterIcon';
 import {CheckBox} from 'react-native-elements';
 import Categories from '../../model/Categories';
+import {useTranslation} from 'react-i18next';
 
 /**
  * A generic input field component.
@@ -14,6 +14,7 @@ import Categories from '../../model/Categories';
  * filter. It should accept two parameters: the filter text and the selected categories.
  */
 const Filter = ({placeholder, updateElements}) => {
+  const {t} = useTranslation();
   const {colors} = useTheme();
   const styles = useStyles();
   const [filterText, setFilterText] = useState('');
@@ -65,7 +66,7 @@ const Filter = ({placeholder, updateElements}) => {
           {Object.values(Categories).map(category => (
             <CheckBox
               key={category}
-              title={category}
+              title={t(`categories.${category}`)}
               checked={!!selectedCategories[category]}
               onPress={() => toggleCategory(category)}
               containerStyle={styles.checkbox}

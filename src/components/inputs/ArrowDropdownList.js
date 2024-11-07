@@ -48,7 +48,7 @@ const ArrowDropdownList = ({label, entries = [], onValueChange}) => {
     <>
       {label && <Text content>{label}</Text>}
       <DropDownPicker
-        placeholder={t('transfer.destination_placeholder')}
+        placeholder={t('transfer.source_placeholder')}
         style={styles.style}
         containerStyle={styles.containerStyle}
         disabledStyle={styles.disabledStyle}

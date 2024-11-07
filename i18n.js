@@ -16,12 +16,25 @@ i18n
     resources: {
       en: {
         translation: {
+          categories: {
+            Groceries: 'Groceries',
+            Shopping: 'Shopping',
+            Restaurants: 'Restaurants',
+            Transportation: 'Transportation',
+            Entertainment: 'Entertainment',
+            Health: 'Health',
+            Services: 'Services',
+            Utilities: 'Utilities',
+            Transfer: 'Transfers',
+            Other: 'Other',
+          },
           dashboard: {
             welcome: 'Welcome back! Your savings are doing just fine',
             latest_transactions: 'Latest Transactions',
             monthly_spending: 'Monthly Spendings (from',
           },
           transfer: {
+            screen_name: 'Transfer',
             amount: 'Amount',
             amount_placeholder: 'Enter amount',
             source: 'Source Account',
@@ -35,6 +48,7 @@ i18n
             confirm_btn: 'Confirm',
           },
           transactions: {
+            screen_name: 'Transactions',
             filter_placeholder: 'Filter for date or destination...',
             to: 'To',
             store: 'Store',
@@ -42,16 +56,32 @@ i18n
             amount: 'Amount',
             message: 'Message',
           },
+          settings: {
+            screen_name: 'Settings',
+          },
         },
       },
       it: {
         translation: {
+          categories: {
+            Groceries: 'Spesa',
+            Shopping: 'Shopping',
+            Restaurants: 'Ristoranti',
+            Transportation: 'Trasporti',
+            Entertainment: 'Divertimento',
+            Health: 'Salute',
+            Services: 'Servizi',
+            Utilities: 'Utilità',
+            Transfer: 'Trasferimenti',
+            Other: 'Altro',
+          },
           dashboard: {
             welcome: 'Bentornato! Tranquillo, i tuoi risparmi sono al sicuro',
             latest_transactions: 'Ultimi Movimenti',
             monthly_spending: 'Spese Mensili (dal',
           },
           transfer: {
+            screen_name: 'Trasferisci',
             amount: 'Importo',
             amount_placeholder: "Inserisci l'importo",
             source: 'Conto Mittente',
@@ -65,12 +95,16 @@ i18n
             confirm_btn: 'Conferma',
           },
           transactions: {
+            screen_name: 'Transazioni',
             filter_placeholder: 'Filtra per data o destinazione...',
             to: 'A',
             store: 'Negozio',
             date: 'Data',
             amount: 'Importo',
             message: 'Messaggio',
+          },
+          settings: {
+            screen_name: 'Impostazioni',
           },
         },
       },
