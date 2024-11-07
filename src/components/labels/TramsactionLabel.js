@@ -3,14 +3,16 @@ import {useTheme} from '@react-navigation/native';
 import {Image, StyleSheet, View} from 'react-native';
 import Text from '../common/Text';
 import CategoryIcons from '../../assets/enums/CategoryIcons';
+import {useTranslation} from 'react-i18next';
 
-const TransactionLabel = ({t}) => {
+const TransactionLabel = ({t: transaction}) => {
   const styles = useStyles();
-  const categoryIcon = CategoryIcons[t.category];
+  const categoryIcon = CategoryIcons[transaction.category];
+  const {t} = useTranslation();
 
   return (
     <View style={styles.wrapper}>
-      <Text small>{t.account.uuid}</Text>
+      <Text small>{transaction.account.uuid}</Text>
       <View style={styles.container}>
         <View style={styles.iconContainer}>
           <Image
@@ -20,15 +22,27 @@ const TransactionLabel = ({t}) => {
           />
         </View>
         <View style={styles.infoRowContainer}>
-          {t.category == 'Transfer' ? (
-            <Text content>To: {t.destination}</Text>
+          {transaction.category == 'Transfer' ? (
+            <Text content>
+              {t('transactions.to')}: {transaction.destination}
+            </Text>
           ) : (
-            <Text content>Store: {t.destination}</Text>
+            <Text content>
+              {t('transactions.store')}: {transaction.destination}
+            </Text>
           )}
-          <Text content>Date: {t.date}</Text>
-          <Text content>Amount: {t.amount}€</Text>
-          <Text content>Account: {t.account}</Text>
-          {t.message ? <Text content>Message: {t.message}</Text> : null}
+          <Text content>
+            {t('transactions.date')}: {transaction.date}
+          </Text>
+          <Text content>
+            {t('transactions.amount')}: {transaction.amount}€
+          </Text>
+          <Text content>Account: {transaction.account}</Text>
+          {transaction.message ? (
+            <Text content>
+              {t('transactions.message')}: {transaction.message}
+            </Text>
+          ) : null}
         </View>
       </View>
     </View>

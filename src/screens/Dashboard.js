@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [fromDate, setFromDate] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
 
   useFocusEffect(
     useCallback(() => {

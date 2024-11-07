@@ -3,6 +3,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Text from '../common/Text';
+import { useTranslation } from 'react-i18next';
 
 /**
  * @param {string} label - The label of the dropdown list
@@ -20,6 +21,8 @@ const ArrowDropdownList = ({label, entries = [], onValueChange}) => {
   );
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(formattedEntries);
+
+  const {t} = useTranslation();
 
   useEffect(() => {
     setItems(formattedEntries);
@@ -45,7 +48,7 @@ const ArrowDropdownList = ({label, entries = [], onValueChange}) => {
     <>
       {label && <Text content>{label}</Text>}
       <DropDownPicker
-        placeholder="Select an account:"
+        placeholder={t('transfer.destination_placeholder')}
         style={styles.style}
         containerStyle={styles.containerStyle}
         disabledStyle={styles.disabledStyle}

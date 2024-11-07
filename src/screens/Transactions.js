@@ -8,15 +8,16 @@ import Filter from '../components/inputs/Filter';
 import Endpoints from '../commons/rest/endpoints';
 import {fetchData} from '../commons/rest/datafetcher';
 import parseDate from '../commons/parseDate';
+import { useTranslation } from 'react-i18next';
 
 const Transactions = () => {
   const styles = useStyles();
+  const {t, i18n} = useTranslation();
 
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   const updateTransactions = (filter, categories) => {
-    console.log('Filter:', filter, 'Categories:', categories);
     const filtered = transactions.filter(
       t =>
         (t.destination.toLowerCase().includes(filter.toLowerCase()) ||
@@ -41,7 +42,7 @@ const Transactions = () => {
       <SafeAreaView style={styles.container}>
         <ScrollView style={{paddingHorizontal: 20}}>
           <Filter
-            placeholder={'Filter for date or destination'}
+            placeholder={`${t('transactions.filter_placeholder')}`}
             updateElements={updateTransactions}
           />
           {filteredTransactions

@@ -14,6 +14,7 @@ import Transaction from '../model/Transaction';
 import Categories from '../model/Categories';
 import {postData} from '../commons/rest/dataposter';
 import {putData} from '../commons/rest/dataputter';
+import {useTranslation} from 'react-i18next';
 
 const Transfer2 = () => {
   const styles = useStyles();
@@ -24,6 +25,8 @@ const Transfer2 = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [sourceAccount, setSourceAccount] = useState('');
   const [accounts, setAccounts] = useState([]);
+
+  const {t} = useTranslation();
 
   useEffect(() => {
     fetchData(Endpoints.ACCOUNTS, data => {
@@ -100,24 +103,24 @@ const Transfer2 = () => {
       <SafeAreaView style={styles.container}>
         <View style={styles.elemContainer}>
           <GenericInputField
-            label="Amount"
-            placeholder={'Enter amount'}
+            label={t('transfer.amount')}
+            placeholder={t('transfer.amount_placeholder')}
             onChangeText={setAmount}
             inputType="numeric"
           />
           <ArrowDropdownList
-            label="Source Account"
+            label={t('transfer.source')}
             entries={Object.keys(accounts)}
             onValueChange={setSourceAccount}
           />
           <GenericInputField
-            label="Destination Account"
-            placeholder={'Enter destination account'}
+            label={t('transfer.destination')}
+            placeholder={t('transfer.destination_placeholder')}
             onChangeText={setDestinationAccount}
           />
           <GenericInputField
-            label="Message"
-            placeholder={'Enter message (optional)'}
+            label={t('transfer.message')}
+            placeholder={t('transfer.message_placeholder')}
             onChangeText={setMessage}
           />
           <DateTimePickerModal
@@ -133,15 +136,15 @@ const Transfer2 = () => {
             onCancel={() => setDatePickerVisibility(false)}
           />
           <View style={styles.dateContainer}>
-            <TextLabel label={'Date'} content={formatDate(date)} />
+            <TextLabel label={t(`transfer.date`)} content={formatDate(date)} />
             <GenericButton
-              title="Change Date"
+              title={t('transfer.change_date_btn')}
               onPress={() => setDatePickerVisibility(true)}
             />
           </View>
           <View style={styles.buttonContainer}>
             <GenericButton
-              title="Submit"
+              title={t('transfer.confirm_btn')}
               titleColor="green"
               onPress={handleTransfer}
             />
