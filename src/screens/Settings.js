@@ -3,7 +3,6 @@ import {Image, StyleSheet, View} from 'react-native';
 import Text from '../components/common/Text';
 import Screen from '../components/common/Screen';
 import {useTheme} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import DarkMode from '../assets/svg/DarkMode';
 import LightMode from '../assets/svg/LightMode';
 import {useTranslation} from 'react-i18next';
@@ -42,7 +41,7 @@ const Settings = ({navigationRef}) => {
       await AsyncStorage.setItem(DARK, newTheme.toString());
       setIsDarkMode(newTheme);
       console.log('Theme changed to:', newTheme ? 'dark' : 'light');
-      navigationRef.current.toggleTheme(); // Call the toggleTheme method
+      navigationRef.current.toggleTheme();
     } catch (e) {
       console.log('Error setting color:', e);
     }
