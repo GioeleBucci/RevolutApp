@@ -125,7 +125,7 @@ const Dashboard = () => {
           {transactions
             .sort((a, b) => parseDate(b.date) - parseDate(a.date))
             .map((transaction, index) => (
-              <Spen2dingsLabel
+              <SpendingsLabel
                 key={index}
                 category={transaction.category}
                 store={transaction.destination}
