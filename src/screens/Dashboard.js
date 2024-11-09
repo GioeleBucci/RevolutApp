@@ -4,7 +4,13 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 import React, {useState, useCallback} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View, ActivityIndicator} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+  ActivityIndicator,
+} from 'react-native';
 import Text from '../components/common/Text';
 import SpendingsLabel from '../components/labels/SpendingsLabel';
 import BalanceLabel from '../components/labels/BalanceLabel';
@@ -97,7 +103,12 @@ const Dashboard = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={{paddingHorizontal: 20}}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          paddingHorizontal: 20,
+        }}>
         <View style={{zIndex: 10}}>
           {welcomeMessage}
           {accounts.map((account, index) => (
