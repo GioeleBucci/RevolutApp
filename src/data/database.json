@@ -9,6 +9,70 @@
       "category": "Groceries"
     },
     {
+      "id": "cb52",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-24",
+      "destination": "Kiwi",
+      "date": "2024/09/15",
+      "category": "Groceries"
+    },
+    {
+      "id": "cx24",
+      "account": "PJ96XSQDTWRP3UUP",
+      "amount": "-58",
+      "destination": "AtB",
+      "date": "2024/11/01",
+      "category": "Transportation"
+    },
+    {
+      "id": "a04x",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-14",
+      "destination": "Arcade",
+      "date": "2024/10/28",
+      "category": "Entertainment"
+    },
+    {
+      "id": "h123",
+      "account": "PJ96XSQDTWRP3UUP",
+      "amount": "-30",
+      "destination": "Boots Apotek",
+      "date": "2024/09/14",
+      "category": "Health"
+    },
+    {
+      "id": "h323",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-174",
+      "destination": "Plumber",
+      "date": "2023/12/05",
+      "category": "Services"
+    },
+    {
+      "id": "fe1p",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-389",
+      "destination": "Sit Housing",
+      "date": "2024/11/01",
+      "category": "Utilities"
+    },
+    {
+      "id": "r1a2",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-389",
+      "destination": "Sit Housing",
+      "date": "2024/10/01",
+      "category": "Utilities"
+    },
+    {
+      "id": "r2b3",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-389",
+      "destination": "Sit Housing",
+      "date": "2024/09/01",
+      "category": "Utilities"
+    },
+    {
       "id": "a1b2",
       "account": "578G4ND59T59JRB2",
       "amount": "-65",
@@ -35,9 +99,9 @@
     {
       "id": "c4ee",
       "account": "578G4ND59T59JRB2",
-      "destination": "2WGWN1UVYRZKGDAM",
+      "destination": "2WGWN1UVYRZKAM",
       "amount": "-17",
-      "date": "2024/11/05",
+      "date": "2024/10/05",
       "category": "Transfer"
     },
     {
@@ -45,9 +109,9 @@
       "account": "578G4ND59T59JRB2",
       "destination": "3FTEVPGB5I14HE58",
       "amount": "-15",
-      "date": "2024/11/06",
+      "date": "2024/10/30",
       "category": "Transfer",
-      "message": "test test"
+      "message": "Money for lunch"
     },
     {
       "id": "3889",
@@ -55,7 +119,16 @@
       "destination": "3FTEVPGB5XWPR43",
       "amount": -200,
       "date": "2024/11/07",
-      "category": "Transfer"
+      "category": "Transfer",
+      "message": "Happy birthday!"
+    },
+    {
+      "id": "dmr4",
+      "account": "578G4ND59T59JRB2",
+      "amount": "-38",
+      "destination": "Clas Ohlson",
+      "date": "2023/10/05",
+      "category": "Shopping"
     }
   ],
   "accounts": [
@@ -65,7 +138,7 @@
     },
     {
       "id": "578G4ND59T59JRB2",
-      "balance": 954
+      "balance": 953
     }
   ]
 }

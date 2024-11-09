@@ -22,15 +22,9 @@ const TransactionLabel = ({t: transaction}) => {
           />
         </View>
         <View style={styles.infoRowContainer}>
-          {transaction.category == 'Transfer' ? (
-            <Text content>
-              {t('transactions.to')}: {transaction.destination}
-            </Text>
-          ) : (
-            <Text content>
-              {t('transactions.store')}: {transaction.destination}
-            </Text>
-          )}
+          <Text content>
+            {t('transactions.to')}: {transaction.destination}
+          </Text>
           <Text content>
             {t('transactions.date')}: {transaction.date}
           </Text>
