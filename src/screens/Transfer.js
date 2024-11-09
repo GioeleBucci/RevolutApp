@@ -64,20 +64,35 @@ const Transfer2 = () => {
     }
   }
 
-  const handleTransfer = () => {
+  const isTransferValid = () => {
     if (!sourceAccount || !destinationAccount || !amount || !date) {
       Alert.alert('Transfer failed', 'Please fill all fields');
-      return;
+      return false;
     }
     if (sourceAccount === destinationAccount) {
       Alert.alert(
         'Transfer failed',
         'Source and destination cannot be the same',
       );
-      return;
+      return false;
     }
     if (parseFloat(accounts[sourceAccount]) < amount) {
       Alert.alert('Transfer failed', 'Insufficient funds');
+      return false;
+    }
+    if (amount <= 0) {
+      Alert.alert('Transfer failed', 'Amount must be greater than 0');
+      return false;
+    }
+    if (date < new Date()) {
+      Alert.alert('Transfer failed', 'Date cannot be in the past');
+      return false;
+    }
+    return true;
+  };
+
+  const handleTransfer = () => {
+    if (!isTransferValid()) {
       return;
     }
     let transfer = new Transaction(
