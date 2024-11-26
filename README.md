@@ -43,8 +43,8 @@ If you can't get this to work, see the [Troubleshooting](https://reactnative.dev
 ## Screenshots
 
 <p align="center">
-  <img width="250" height:"auto" src="https://imgur.com/70KHeUF.png">
-  <img width="250" height:"auto" src="https://imgur.com/GnHs9bA.png">
-  <img width="250" height:"auto" src="https://imgur.com/DNobEqp.png">
+  <img height="450" width:"auto" src="https://imgur.com/70KHeUF.png">
+  <img height="450" width:"auto" src="https://imgur.com/GnHs9bA.png">
+  <img height="450" width:"auto" src="https://imgur.com/DNobEqp.png">
 </p>
 
